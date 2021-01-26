@@ -5,24 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <script src="js/main.js"></script>
   <title>Escape Room</title>
 </head>
 <body>
   <a-scene id="js--scene">
 
     <a-assets>
-      <a-asset-item id="teledoor-obj" src="/Models/ModelDaniel/TeleDoor.obj"></a-asset-item>
-      <a-asset-item id="teledoor-mtl" src="/Models/ModelDaniel/TeleDoor.mtl"></a-asset-item>
+      <a-asset-item id="teledoor" src="Models/ModelDaniel/TeleportDoor.gltf"></a-asset-item>
+      <a-asset-item id="teleport" src="Models/ModelDaniel/TeleportPad.gltf"></a-asset-item>
 
-      <a-asset-item id="teleport-obj" src="Models/ModelDaniel/TeleportPad.obj"></a-asset-item>
-      <a-asset-item id="teleport-mtl" src="Models/ModelDaniel/TeleportPad.mtl"></a-asset-item>
+<!-- ASSETS DANIEL -->
+      <a-asset-item id="dungeon" src="Models/ModelDaniel/Dungeon.gltf"></a-asset-item>
+      <a-asset-item id="ironDoor" src="Models/ModelDaniel/IronDoor.gltf"></a-asset-item>
+      <a-asset-item id="stoneDoor" src="Models/ModelDaniel/StoneDoor.gltf"></a-asset-item>
+      <a-asset-item id="graveDoor" src="Models/ModelDaniel/GraveDoor.gltf"></a-asset-item>
+      <!-- PUZZEL ASSETS -->
+      <a-asset-item id="crystal" src="Models/ModelDaniel/Crystal.gltf"></a-asset-item>
+
+      <a-asset-item id="tegel1" src="Models/ModelDaniel/Puzzel/Tegel1.gltf"></a-asset-item>
+      <a-asset-item id="tegel2" src="Models/ModelDaniel/Puzzel/Tegel2.gltf"></a-asset-item>
+      <a-asset-item id="tegel3" src="Models/ModelDaniel/Puzzel/Tegel3.gltf"></a-asset-item>
+      <a-asset-item id="tegel4" src="Models/ModelDaniel/Puzzel/Tegel4.gltf"></a-asset-item>
+      <a-asset-item id="tegel5" src="Models/ModelDaniel/Puzzel/Tegel5.gltf"></a-asset-item>
+      <a-asset-item id="tegel6" src="Models/ModelDaniel/Puzzel/Tegel6.gltf"></a-asset-item>
+      <a-asset-item id="tegel7" src="Models/ModelDaniel/Puzzel/Tegel7.gltf"></a-asset-item>
+      <a-asset-item id="tegel8" src="Models/ModelDaniel/Puzzel/Tegel8.gltf"></a-asset-item>
+      <a-asset-item id="tegel9" src="Models/ModelDaniel/Puzzel/Tegel9.gltf"></a-asset-item>
+      <a-asset-item id="tegel0" src="Models/ModelDaniel/Puzzel/Tegel10.gltf"></a-asset-item>
+      <a-asset-item id="toets1" src="Models/ModelDaniel/Puzzel/Toets1.gltf"></a-asset-item>
+      <a-asset-item id="toets2" src="Models/ModelDaniel/Puzzel/toets2.gltf"></a-asset-item>
+      <a-asset-item id="toets3" src="Models/ModelDaniel/Puzzel/Toets3.gltf"></a-asset-item>
+      <a-asset-item id="toets4" src="Models/ModelDaniel/Puzzel/toets4.gltf"></a-asset-item>
+      <a-asset-item id="toets5" src="Models/ModelDaniel/Puzzel/Toets5.gltf"></a-asset-item>
+      <a-asset-item id="toets6" src="Models/ModelDaniel/Puzzel/Toets6.gltf"></a-asset-item>
+      <a-asset-item id="toets7" src="Models/ModelDaniel/Puzzel/Toets7.gltf"></a-asset-item>
+      <a-asset-item id="toets8" src="Models/ModelDaniel/Puzzel/Toets8.gltf"></a-asset-item>
+      <a-asset-item id="toets9" src="Models/ModelDaniel/Puzzel/Toets9.gltf"></a-asset-item>
+      <a-asset-item id="toets0" src="Models/ModelDaniel/Puzzel/Toets0.gltf"></a-asset-item>
+
 
 
     </a-assets>
 
 
-    <a-camera id="js--camera" position="0 1.6 0">
+    <a-camera id="js--camera" position="20 1.6 0">
       <a-entity
         animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 550; from: 0.1 0.1 0.1; to: 1 1 1"
         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1000; from: 1 1 1; to: 0.1 0.1 0.1"
@@ -33,13 +59,53 @@
         position = "0 0 -0.5"
         raycaster = "objects: .js--interact"
       ></a-entity>
-      <a-plane id="js--fade" height="1" width="2" position="0 0 -0.5" roation="0 0 -90" color="black" opacity="0"></a-plane>
+      <a-plane id="js--fade" height="1" width="2" position="0 0 -0.5" rotation="0 0 -90" color="black" opacity="0"></a-plane>
 
     </a-camera>
 
 
 
+<!--DANIEL ZIJN KAMER  -->
+    <a-entity gltf-model="#dungeon" position="20 0 0"></a-entity>
+    <!-- TELEPORTEER DEUREN TUSSEN KAMERS -->
+    <a-entity class="js--interact" gltf-model="#teledoor" position="19 0.9 -4.9" rotation="0 -90 0"></a-entity>
+    <a-entity class="js--interact" gltf-model="#teledoor" position="22 0.9 4.9" rotation="0 90 0"></a-entity>
+
+    <!-- TELEPORT IN KAMER -->
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="19 0 -4" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="19 0 1" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="22 0 4" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="22 0 -1" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="24 0 2 " scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="22 -10 -3" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" id="js--rock--teleport" gltf-model="#teleport" position="28 -10 2" scale="0.5 0.5 0.5"></a-entity>
+
+    <a-entity class="js--interact js--pickup" id="js--crystal" gltf-model="#crystal" position="20.5 10 2"></a-entity>
+    <a-cylinder class="js--placeholder js--interact" color="red" radius="0.1" height="0.01" position="24.5 1 3"></a-cylinder>
+
+    <a-entity id="js--gate" gltf-model="#ironDoor" position="20 0 0"></a-entity>
+    <a-entity id="js--rock" gltf-model="#stoneDoor" position="20 0 0"></a-entity>
+    <a-entity id="js--grave" gltf-model="#graveDoor" position="20 0 0"></a-entity>
+
+    <!-- PUZZEL -->
+    <a-entity id="js--code1" code gltf-model="#tegel1" position="18.2 -.2 1.05"></a-entity>
+    <a-entity id="js--code2" code gltf-model="#tegel1" position="18.2 -.2 .75"></a-entity>
+    <a-entity id="js--code3" code gltf-model="#tegel1" position="18.2 -.2 .45"></a-entity>
+    <a-entity id="js--code4" code gltf-model="#tegel1" position="18.2 -.2 .15"></a-entity>
+    <a-entity id="js--code5" code gltf-model="#tegel1" position="18.2 -.2 -.15"></a-entity>
+
+    <a-entity class="js--interact js--toets" gltf-model="#toets1" position="17.2 0.8 1.6" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets2" position="17.2 0.8 1.3" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets3" position="17.2 0.8 1" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets4" position="17.2 0.8 0.7" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets5" position="17.2 0.8 0.4" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets6" position="17.5 0.7 1.6" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets7" position="17.5 0.7 1.3" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets8" position="17.5 0.7 1" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets9" position="17.5 0.7 0.7" rotation="20 90 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets0" position="17.5 0.7 0.4" rotation="20 90 0"></a-entity>
 
   </a-scene>
 </body>
+  <script src="js/main.js"></script>
 </html>
