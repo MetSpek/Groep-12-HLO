@@ -5,15 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="js/nasa.js" charset="UTF-8"></script>
   <title>Escape Room</title>
 </head>
 <body>
   <a-scene id="js--scene">
 
     <a-assets>
+
       <a-asset-item id="teledoor" src="Models/ModelDaniel/TeleportDoor.gltf"></a-asset-item>
       <a-asset-item id="teleport" src="Models/ModelDaniel/TeleportPad.gltf"></a-asset-item>
-
+      <!-- Kilian assets-->
+      <a-sound id="tp" src="sounds/tp.mp3"></a-sound>
+      <img id="office_floor" src="textures/grey_floor.jpg">
+      <img id="office_cieling" src="textures/office_cieling.jpg">
+      <img id="office_wall" src="textures/white_wall.jpg">
+      <img src="" alt="">
 <!-- ASSETS DANIEL -->
       <a-asset-item id="dungeon" src="Models/ModelDaniel/Dungeon.gltf"></a-asset-item>
       <a-asset-item id="ironDoor" src="Models/ModelDaniel/IronDoor.gltf"></a-asset-item>
@@ -105,6 +112,21 @@
     <a-entity class="js--interact js--toets" gltf-model="#toets9" position="17.5 0.7 0.7" rotation="20 90 0"></a-entity>
     <a-entity class="js--interact js--toets" gltf-model="#toets0" position="17.5 0.7 0.4" rotation="20 90 0"></a-entity>
 
+    <!-- Kilian NASA kamer -->
+    <a-plane src="#office_floor" width="15" height="15" color="rgb(200, 200, 200)" position="15 0 -15" rotation="-90 0 0"></a-plane>
+    <a-plane src="#office_cieling" width="15" height="15" color="rgb(200, 200, 200)" position="15 3 -15" rotation="90 0 0" repeat="10 10"></a-plane>
+    <a-plane src="#office_wall" width="15" height="4" color="rgb(200, 200, 200)" position="15 1.5 -22.5" rotation="0 0 0"></a-plane>
+    <a-plane src="#office_wall" width="15" height="4" color="rgb(200, 200, 200)" position="15 1.5 -7.5" rotation="180 0 0"></a-plane>
+    <a-plane src="#office_wall" width="15" height="4" color="rgb(200, 200, 200)" position="22.5 1.5 -15" rotation="0 -90 0"></a-plane>
+    <a-plane src="#office_wall" width="15" height="4" color="rgb(200, 200, 200)" position="7.5 1.5 -15" rotation="0 90 0"></a-plane>
+
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="17 0 -15" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="19 0 -19" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" gltf-model="#teleport" position="17.5 0 -11" scale="0.5 0.5 0.5"></a-entity>
+
+    <a-box reloader-nasa width="1" height="1" position="15 1.5 -15"></a-box>
+    <a-text value=" Hier text " color="rgb(0, 0, 0)" position="15 1.5 -6"></a-text>
+    <a-plane src="" width="1" height="1" color="rgb(100, 100, 100)" position="15 1.5 -6"></a-plane>
   </a-scene>
 </body>
   <script src="js/main.js"></script>
