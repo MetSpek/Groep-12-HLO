@@ -1,5 +1,8 @@
 window.onload = () =>{
 /*=========================VARIABELEN======================*/
+  /*==TUTORIAL=*/
+  const verderKnop = document.getElementsByClassName('js--tutorial--knop');
+  const tutorialBox = document.getElementsByClassName('js--tutorial--box');
 
             /*==========LOPEN===========*/
   const places = document.getElementsByClassName('js--place');
@@ -27,6 +30,7 @@ window.onload = () =>{
   let input = "";
   let pickups = document.getElementsByClassName('js--pickup');
   let hold = null;
+  let att = document.createAttribute("animation");
   var firstGood = false;
   var secondGood = false;
   var thirdGood = false;
@@ -43,17 +47,16 @@ window.onload = () =>{
 
 
 
-
-/*=========================LOPEN==========================*/
+/*======================================LOPEN=================================*/
     for (let i = 0; i < places.length; i++) {
       places[i].addEventListener('click', function(evt){
         let att = document.createAttribute("position");
         att.value =  this.getAttribute('position').x + " 1.6 " + this.getAttribute('position').z;
-        camera.setAttribute('position', att.value);
+        teleport(att.value);
       });
     }
 
-    /*===================KAMER SWITCHEN======================*/
+/*==========================KAMER SWITCHEN====================================*/
       for (let i = 0; i < roomDoor.length; i++) {
         roomDoor[i].addEventListener('click', function(evt){
 
@@ -73,10 +76,9 @@ window.onload = () =>{
     }
 
       function teleport(values){
-        console.log(values);
-
         /*Animatie voor fade to black*/
-        let att = document.createAttribute("animation");
+        console.log(fade)
+
         att.value = "property: opacity; from:0; to:1; dur:500"
         fade.setAttribute('animation', att.value);
 
@@ -92,33 +94,91 @@ window.onload = () =>{
         }, 1000);
       }
 
-/*=============================CODE DANIEL====================================*/
-  /*OPPAKKEN*/
-  for (let i = 0; i < pickups.length; i++) {
-    pickups[i].addEventListener('click', function(evt){
-      if (hold == null) {
-        console.log("pak op")
-        camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
-        hold = "crystal";
-        this.remove();
-      }
-    });
-  }
+/*====================OPPAKKEN EN NEERZETTEN=================================*/
 
-  for (let i = 0; i < placeholders.length; i++) {
-    placeholders[i].addEventListener('click', function(evt){
-      if (hold == "crystal"){
-        let crystal = document.createElement('a-entity');
-        crystal.setAttribute("class", "js--pickup js--interact");
-        crystal.setAttribute("gltf-model", "#crystal")
-        crystal.setAttribute("position", {x:"20.65", y:"1", z: "7.55"});
-        scene.appendChild(crystal);
-        document.getElementById("js--hold").remove();
-        hold = null;
-        removeRock();
+      /*OPPAKKEN*/
+      for (let i = 0; i < pickups.length; i++) {
+        pickups[i].addEventListener('click', function(evt){
+          if (hold == null) {
+            switch (pickups[i]) {
+              case pickups[0]:
+                //camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" id="js--tutorial--box" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
+                hold = "box";
+                this.remove();
+                break;
+              case pickups[1]:
+                //camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
+                hold = "crystal";
+                this.remove();
+                break;
+              default:
+            }
+          }
+        });
       }
-    });
-  }
+
+      /*NEERZETTEN*/
+      for (let i = 0; i < placeholders.length; i++) {
+        placeholders[i].addEventListener('click', function(evt){
+          switch (hold) {
+            case "crystal":
+              let crystal = document.createElement('a-entity');
+              crystal.setAttribute("class", "js--pickup js--interact");
+              crystal.setAttribute("gltf-model", "#crystal")
+              crystal.setAttribute("position", {x:"20.65", y:"1", z: "7.55"});
+              scene.appendChild(crystal);
+              //document.getElementById("js--hold").remove();
+              hold = null;
+              removeRock();
+              break;
+            case "box":
+              let boxje = document.createElement('a-box');
+              boxje.setAttribute("position", {x:"1", y:".1", z: "-6"});
+              boxje.setAttribute("color", "green");
+              boxje.setAttribute("depth", "0.2");
+              boxje.setAttribute("width", "0.2");
+              boxje.setAttribute("height", "0.2");
+              scene.appendChild(boxje);
+              //document.getElementById("js--hold").remove();
+              hold = null;
+              setTimeout(function(){
+                teleport("0 1.6 -9")
+              }, 2000);
+              break;
+          }
+        });
+      }
+
+
+
+
+      /*=============================TUTORIAL=======================================*/
+          for (let i = 0; i < verderKnop.length; i++) {
+            verderKnop[i].addEventListener('click', function(evt){
+              switch (verderKnop[i]) {
+                case verderKnop[0]:
+                  teleport("1.2 1.6 -3");
+                  break;
+                case verderKnop[1]:
+                  teleport("-1 1.6 -6.5");
+                  break;
+                case verderKnop[2]:
+                  teleport("0 1.6 -13");
+                  break;
+                case verderKnop[3]:
+                  teleport("0 1.6 -13");
+                  break;
+                default:
+                  console.log("minder nice")
+              }
+            });
+          }
+
+
+
+
+
+/*=============================CODE DANIEL====================================*/
 
 
   /*CODE VOOR PUZZEL CREATIE*/
