@@ -191,35 +191,35 @@ window.onload = () =>{
     decideKind(tegelThree);
     decideKind(tegelFour);
     decideKind(tegelFive);
-    console.log(code);
+    console.log("Code Daniel: " + code);
   }
 
   function decideKind(tegel){
     let randomNumber = randomiser();
     switch (randomNumber) {
       case 1:
-        setModel(tegel, "#tegel1");
+        setModel(tegel, "#tegel6");
         break;
       case 2:
-        setModel(tegel, "#tegel2");
-        break;
-      case 3:
         setModel(tegel, "#tegel3");
         break;
-      case 4:
+      case 3:
         setModel(tegel, "#tegel4");
+        break;
+      case 4:
+        setModel(tegel, "#tegel8");
         break;
       case 5:
         setModel(tegel, "#tegel5");
         break;
       case 6:
-        setModel(tegel, "#tegel6");
+        setModel(tegel, "#tegel2");
         break;
       case 7:
         setModel(tegel, "#tegel7");
         break;
       case 8:
-        setModel(tegel, "#tegel8");
+        setModel(tegel, "#tegel1");
         break;
       case 9:
         setModel(tegel, "#tegel9");
