@@ -9,7 +9,7 @@ window.onload = () =>{
   const roomPlace = document.getElementsByClassName('js--roomPlace')
   const camera = document.getElementById('js--camera');
   const roomDoor = document.getElementsByClassName('js--roomDoor');
-  const fade = document.getElementById('js--fade');
+
 
   /*==KAMER DANIEL==*/
   const tegelOne = document.getElementById("js--code1");
@@ -26,11 +26,11 @@ window.onload = () =>{
   const placeholders = document.getElementsByClassName('js--placeholder');
   const crystalPlace = document.getElementById("js--crystal")
   let scene = document.getElementById('js--scene');
+  let plekInput = 0;
   let code = "";
   let input = "";
   let pickups = document.getElementsByClassName('js--pickup');
   let hold = null;
-  let att = document.createAttribute("animation");
   var firstGood = false;
   var secondGood = false;
   var thirdGood = false;
@@ -76,11 +76,9 @@ window.onload = () =>{
     }
 
       function teleport(values){
+        const fade = document.getElementById('js--fade');
         /*Animatie voor fade to black*/
-        console.log(fade)
-
-        att.value = "property: opacity; from:0; to:1; dur:500"
-        fade.setAttribute('animation', att.value);
+        fade.setAttribute('animation', "property: opacity; from:0; to:1; dur:500");
 
         /*Timer na 600ms teleporteer*/
         setTimeout(function(){
@@ -89,8 +87,7 @@ window.onload = () =>{
 
         /*Timer naa 1000ms zwart weer terug naar normaal*/
         setTimeout(function(){
-          att.value = "property: opacity; from:1; to:0; dur:500"
-          fade.setAttribute('animation', att.value);
+          fade.setAttribute('animation', "property: opacity; from:1; to:0; dur:500");
         }, 1000);
       }
 
@@ -102,12 +99,12 @@ window.onload = () =>{
           if (hold == null) {
             switch (pickups[i]) {
               case pickups[0]:
-                //camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" id="js--tutorial--box" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
+                camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
                 hold = "box";
                 this.remove();
                 break;
               case pickups[1]:
-                //camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
+                camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
                 hold = "crystal";
                 this.remove();
                 break;
@@ -127,7 +124,7 @@ window.onload = () =>{
               crystal.setAttribute("gltf-model", "#crystal")
               crystal.setAttribute("position", {x:"20.65", y:"1", z: "7.55"});
               scene.appendChild(crystal);
-              //document.getElementById("js--hold").remove();
+              document.getElementById("js--hold").remove();
               hold = null;
               removeRock();
               break;
@@ -139,7 +136,7 @@ window.onload = () =>{
               boxje.setAttribute("width", "0.2");
               boxje.setAttribute("height", "0.2");
               scene.appendChild(boxje);
-              //document.getElementById("js--hold").remove();
+              document.getElementById("js--hold").remove();
               hold = null;
               setTimeout(function(){
                 teleport("0 1.6 -9")
@@ -248,34 +245,34 @@ window.onload = () =>{
     toetsen[i].addEventListener('click', function(evt){
       switch (toetsen[i]) {
         case toetsen[0]:
-          checkFirstCorrect("1")
+          checkCode("1");
           break;
         case toetsen[1]:
-          checkFirstCorrect("2")
+          checkCode("2");
           break;
         case toetsen[2]:
-          checkFirstCorrect("3")
+          checkCode("3");
           break;
         case toetsen[3]:
-          checkFirstCorrect("4")
+          checkCode("4");
           break;
         case toetsen[4]:
-          checkFirstCorrect("5")
+          checkCode("5");
           break;
         case toetsen[5]:
-          checkFirstCorrect("6")
+          checkCode("6");
           break;
         case toetsen[6]:
-          checkFirstCorrect("7")
+          checkCode("7");
           break;
         case toetsen[7]:
-          checkFirstCorrect("8")
+          checkCode("8");
           break;
         case toetsen[8]:
-          checkFirstCorrect("9")
+          checkCode("9");
           break;
         case toetsen[9]:
-          checkFirstCorrect("0")
+          checkCode("0");
           break;
         default:
       }
@@ -284,63 +281,16 @@ window.onload = () =>{
 
 
   /*CHECKED OF CODE KLOPT*/
-  function checkFirstCorrect(input){
-    if(firstGood == true){
-      checkSecondCorrect(input)
-    } else {
-      if(code[0] == input){
-        firstGood = true;
-      } else {
-        console.log("WRONG")
+  function checkCode(input){
+      if(code[plekInput] == input){
+        plekInput = plekInput + 1;
+        if(plekInput == 5){
+          removeGate()
+        }
       }
     }
-  }
-
-  function checkSecondCorrect(input){
-    if(secondGood == true){
-      checkThirdCorrect(input)
-    } else {
-      if(code[1] == input){
-        secondGood = true;
-      } else {
-        console.log("WRONG")
-      }
-    }
-  }
-
-  function checkThirdCorrect(input){
-    if(thirdGood == true){
-      checkFourthCorrect(input)
-    } else {
-      if(code[2] == input){
-        thirdGood = true;
-      } else {
-        console.log("WRONG")
-      }
-    }
-  }
 
 
-  function checkFourthCorrect(input){
-    if(fourthGood == true){
-      checkFifthCorrect(input)
-    } else {
-      if(code[3] == input){
-        fourthGood = true;
-      } else {
-        console.log("WRONG")
-      }
-    }
-  }
-
-
-  function checkFifthCorrect(input){
-    if(code[4] == input){
-      removeGate()
-    } else {
-      console.log("WRONG")
-    }
-  }
 
   /*Verplaatsen van dingen*/
   function removeGate(){
