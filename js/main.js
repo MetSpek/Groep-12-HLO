@@ -40,6 +40,37 @@ window.onload = () =>{
 
 
   /*==KAMER TERESA==*/
+  let elementId = "";
+  let numpadCode = "";
+  let elementCode = ["fire", "water", "earth", "air"];
+  const elementDoor = document.getElementById("js--elementDoor");
+  let elementNumbers = document.getElementsByClassName("js--elementNumber");
+  let numpadNumbers = document.getElementsByClassName("js--numpadNumber");
+  let numpadAnswers = document.getElementsByClassName("js--numpadAnswer");
+  let keys = document.getElementsByClassName("js--key");
+
+  let numpadNumber1 = document.getElementById("js--numpadNumber1");
+  let numpadNumber2 = document.getElementById("js--numpadNumber2");
+  let numpadNumber3 = document.getElementById("js--numpadNumber3");
+  let numpadNumber4 = document.getElementById("js--numpadNumber4");
+  let numpadNumber5 = document.getElementById("js--numpadNumber5");
+  let numpadNumber6 = document.getElementById("js--numpadNumber6");
+  let numpadNumber7 = document.getElementById("js--numpadNumber7");
+  let numpadNumber8 = document.getElementById("js--numpadNumber8");
+  let numpadNumber9 = document.getElementById("js--numpadNumber9");
+  let numpadNumber0 = document.getElementById("js--numpadNumber0");
+
+  let elementNumber1 = document.getElementById("js--elementNumber1");
+  let elementNumber2 = document.getElementById("js--elementNumber2");
+  let elementNumber3 = document.getElementById("js--elementNumber3");
+  let elementNumber4 = document.getElementById("js--elementNumber4");
+  let elementNumber5 = document.getElementById("js--elementNumber5");
+  let elementNumber6 = document.getElementById("js--elementNumber6");
+  let elementNumber7 = document.getElementById("js--elementNumber7");
+  let elementNumber8 = document.getElementById("js--elementNumber8");
+  let elementNumber9 = document.getElementById("js--elementNumber9");
+  let elementNumber0 = document.getElementById("js--elementNumber0");
+
 
 
   /*==KAMER KILIAN==*/
@@ -94,29 +125,64 @@ window.onload = () =>{
 /*====================OPPAKKEN EN NEERZETTEN=================================*/
 
       /*OPPAKKEN*/
-      for (let i = 0; i < pickups.length; i++) {
-        pickups[i].addEventListener('click', function(evt){
-          if (hold == null) {
-            switch (pickups[i]) {
-              case pickups[0]:
-                camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
-                hold = "box";
-                this.remove();
-                break;
-              case pickups[1]:
-                camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
-                hold = "crystal";
-                this.remove();
-                break;
-              default:
+      function addListeners() {
+        for (let i = 0; i < pickups.length; i++) {
+          pickups[i].addEventListener('click', function(evt){
+            if (hold == null) {
+              switch (pickups[i]) {
+                case pickups[0]:
+                  camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
+                  hold = "box";
+                  this.remove();
+                  break;
+                case pickups[1]:
+                  camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
+                  hold = "crystal";
+                  this.remove();
+                  break;
+                default:
+              }
             }
+            });
+
+
+            pickups[i].addEventListener('click', function(evt){
+              if (hold == null) {
+                elementId = this.id;
+                switch(elementId) {
+                  case "js--fire":
+                    camera.innerHTML += '<a-entity id="js--hold" obj-model="obj: #fire-obj; mtl: #fire-mtl;" position="0.5 -0.2 -0.5" scale="0.1 0.1 0.1"></a-entity>'
+                    hold = "fire";
+                    this.remove();
+                    break;
+                  case "js--water":
+                    camera.innerHTML += '<a-entity id="js--hold" obj-model="obj: #water-obj; mtl: #water-mtl;" position="0.5 -0.2 -0.5" scale="0.1 0.1 0.1"></a-entity>'
+                    hold = "water";
+                    this.remove();
+                    break;
+                  case "js--earth":
+                    camera.innerHTML += '<a-entity id="js--hold" obj-model="obj: #earth-obj; mtl: #earth-mtl;" position="0.5 -0.2 -0.5" scale="0.1 0.1 0.1"></a-entity>'
+                    hold = "earth";
+                    this.remove();
+                    break;
+                  case "js--air":
+                    camera.innerHTML += '<a-entity id="js--hold" obj-model="obj: #air-obj; mtl: #air-mtl;" position="0.5 -0.2 -0.5" scale="0.1 0.1 0.1"></a-entity>'
+                    hold = "air";
+                    this.remove();
+                    break;
+                }
+              }
+            });
           }
-        });
-      }
+        }
+
+
+      addListeners();
 
       /*NEERZETTEN*/
       for (let i = 0; i < placeholders.length; i++) {
         placeholders[i].addEventListener('click', function(evt){
+          console.log(i);
           switch (hold) {
             case "crystal":
               let crystal = document.createElement('a-entity');
@@ -141,6 +207,61 @@ window.onload = () =>{
               setTimeout(function(){
                 teleport("0 1.6 -9")
               }, 2000);
+            case "fire":
+              fire = document.createElement('a-entity');
+              fire.setAttribute("id", "js--fire");
+              fire.setAttribute("class", "js--interact js--pickup");
+              fire.setAttribute("obj-model", "obj: #fire-obj; mtl: #fire-mtl;");
+              fire.setAttribute("position", {x: this.getAttribute('position').x, y: this.getAttribute('position').y, z: this.getAttribute('position').z});
+              fire.setAttribute("scale", "0.1 0.1 0.1");
+              scene.appendChild(fire);
+              document.getElementById("js--hold").remove();
+              setElement(i, "fire");
+              hold = null;
+              addListeners();
+              checkElementCode(elementCode);
+              break;
+            case "water":
+              water = document.createElement('a-entity');
+              water.setAttribute("id", "js--water");
+              water.setAttribute("class", "js--interact js--pickup");
+              water.setAttribute("obj-model", "obj: #water-obj; mtl: #water-mtl;");
+              water.setAttribute("position", {x: this.getAttribute('position').x, y: this.getAttribute('position').y, z: this.getAttribute('position').z});
+              water.setAttribute("scale", "0.1 0.1 0.1");
+              scene.appendChild(water);
+              document.getElementById("js--hold").remove();
+              setElement(i, "water");
+              hold = null;
+              addListeners();
+              checkElementCode(elementCode);
+              break;
+            case "earth":
+              earth = document.createElement('a-entity');
+              earth.setAttribute("id", "js--earth");
+              earth.setAttribute("class", "js--interact js--pickup");
+              earth.setAttribute("obj-model", "obj: #earth-obj; mtl: #earth-mtl;");
+              earth.setAttribute("position", {x: this.getAttribute('position').x, y: this.getAttribute('position').y, z: this.getAttribute('position').z});
+              earth.setAttribute("scale", "0.1 0.1 0.1");
+              scene.appendChild(earth);
+              document.getElementById("js--hold").remove();
+              setElement(i, "earth");
+              hold = null;
+              addListeners();
+              checkElementCode(elementCode);
+              break;
+            case "air":
+              air = document.createElement('a-entity');
+              air.setAttribute("id", "js--air");
+              air.setAttribute("class", "js--interact js--pickup");
+              air.setAttribute("obj-model", "obj: #air-obj; mtl: #air-mtl;");
+              air.setAttribute("position", {x: this.getAttribute('position').x, y: this.getAttribute('position').y, z: this.getAttribute('position').z});
+              air.setAttribute("scale", "0.1 0.1 0.1");
+              scene.appendChild(air);
+              document.getElementById("js--hold").remove();
+              setElement(i, "air");
+              hold = null;
+              addListeners();
+              checkElementCode(elementCode);
               break;
           }
         });
@@ -245,34 +366,34 @@ window.onload = () =>{
     toetsen[i].addEventListener('click', function(evt){
       switch (toetsen[i]) {
         case toetsen[0]:
-          checkCode("1");
+          checkGetallen("1");
           break;
         case toetsen[1]:
-          checkCode("2");
+          checkGetallen("2");
           break;
         case toetsen[2]:
-          checkCode("3");
+          checkGetallen("3");
           break;
         case toetsen[3]:
-          checkCode("4");
+          checkGetallen("4");
           break;
         case toetsen[4]:
-          checkCode("5");
+          checkGetallen("5");
           break;
         case toetsen[5]:
-          checkCode("6");
+          checkGetallen("6");
           break;
         case toetsen[6]:
-          checkCode("7");
+          checkGetallen("7");
           break;
         case toetsen[7]:
-          checkCode("8");
+          checkGetallen("8");
           break;
         case toetsen[8]:
-          checkCode("9");
+          checkGetallen("9");
           break;
         case toetsen[9]:
-          checkCode("0");
+          checkGetallen("0");
           break;
         default:
       }
@@ -281,9 +402,11 @@ window.onload = () =>{
 
 
   /*CHECKED OF CODE KLOPT*/
-  function checkCode(input){
+  function checkGetallen(input){
+      console.log("cunt");
       if(code[plekInput] == input){
         plekInput = plekInput + 1;
+        console.log("goed");
         if(plekInput == 5){
           removeGate()
         }
@@ -307,6 +430,178 @@ window.onload = () =>{
 
   function removeGrave(){
     grave.setAttribute("animation", "property: position; easing: linear; dur: 2000; to: " + " 21 0 0")
+  }
+
+/*=============================CODE TERESA====================================*/
+
+  /*input elementen*/
+  function setElement(place, element) {
+    switch (place) {
+      case 2:
+        elementCode[0] = element;
+        console.log(elementCode);
+        break;
+      case 3:
+        elementCode[1] = element;
+        console.log(elementCode);
+        break;
+      case 4:
+        elementCode[2] = element;
+        console.log(elementCode);
+        break;
+      case 5:
+        elementCode[3] = element;
+        console.log(elementCode);
+        break;
+      default:
+    }
+  }
+
+  /*input code*/
+  for (let i = 0; i < keys.length; i++) {
+    keys[i].addEventListener('click', function(evt){
+      switch (i) {
+        case 0:
+          numpadCode += "1";
+          hideNumpadNumbers();
+          numpadNumber1.setAttribute("visible", "true");
+          break;
+        case 1:
+          numpadCode += "2";
+          hideNumpadNumbers();
+          numpadNumber2.setAttribute("visible", "true");
+          break;
+        case 2:
+          numpadCode += "3";
+          hideNumpadNumbers();
+          numpadNumber3.setAttribute("visible", "true");
+          break;
+        case 3:
+          numpadCode += "4";
+          hideNumpadNumbers();
+          numpadNumber4.setAttribute("visible", "true");
+          break;
+        case 4:
+          numpadCode += "5";
+          hideNumpadNumbers();
+          numpadNumber5.setAttribute("visible", "true");
+          break;
+        case 5:
+          numpadCode += "6";
+          hideNumpadNumbers();
+          numpadNumber6.setAttribute("visible", "true");
+          break;
+        case 6:
+          numpadCode += "7";
+          hideNumpadNumbers();
+          numpadNumber7.setAttribute("visible", "true");
+          break;
+        case 7:
+          numpadCode += "8";
+          hideNumpadNumbers();
+          numpadNumber8.setAttribute("visible", "true");
+          break;
+        case 8:
+          numpadCode += "9";
+          hideNumpadNumbers();
+          numpadNumber9.setAttribute("visible", "true");
+          break;
+        case 9:
+          numpadCode += "0";
+          hideNumpadNumbers();
+          numpadNumber0.setAttribute("visible", "true");
+          break;
+        case 10:
+          numpadCode = "";
+          hideNumpadNumbers();
+          break;
+        case 11:
+          checkCode(numpadCode);
+          break;
+      }
+    });
+  }
+
+  /*check element code*/
+  function checkElementCode(elementCode) {
+    if(elementCode[0] == "water" &&
+    elementCode[1] == "earth" &&
+    elementCode[2] == "fire" &&
+    elementCode[3] == "air") {
+      elementNumber1.setAttribute("visible", "true");
+    }else if(elementCode[0] == "air" &&
+    elementCode[1] == "water" &&
+    elementCode[2] == "fire" &&
+    elementCode[3] == "earth"){
+      elementNumber2.setAttribute("visible", "true");
+    }else if(elementCode[0] == "earth" &&
+    elementCode[1] == "water" &&
+    elementCode[2] == "air" &&
+    elementCode[3] == "fire"){
+      elementNumber3.setAttribute("visible", "true");
+    }else if(elementCode[0] == "earth" &&
+    elementCode[1] == "fire" &&
+    elementCode[2] == "water" &&
+    elementCode[3] == "air"){
+      elementNumber4.setAttribute("visible", "true");
+    }else if(elementCode[0] == "fire" &&
+    elementCode[1] == "earth" &&
+    elementCode[2] == "air" &&
+    elementCode[3] == "water"){
+      elementNumber5.setAttribute("visible", "true");
+    }else if(elementCode[0] == "air" &&
+    elementCode[1] == "earth" &&
+    elementCode[2] == "water" &&
+    elementCode[3] == "fire"){
+      elementNumber6.setAttribute("visible", "true");
+    }else if(elementCode[0] == "water" &&
+    elementCode[1] == "fire" &&
+    elementCode[2] == "air" &&
+    elementCode[3] == "earth"){
+      elementNumber7.setAttribute("visible", "true");
+    }else if(elementCode[0] == "air" &&
+    elementCode[1] == "fire" &&
+    elementCode[2] == "earth" &&
+    elementCode[3] == "water"){
+      elementNumber8.setAttribute("visible", "true");
+    }else if(elementCode[0] == "fire" &&
+    elementCode[1] == "air" &&
+    elementCode[2] == "water" &&
+    elementCode[3] == "earth"){
+      elementNumber9.setAttribute("visible", "true");
+    }else if(elementCode[0] == "earth" &&
+    elementCode[1] == "air" &&
+    elementCode[2] == "water" &&
+    elementCode[3] == "fire"){
+      elementNumber0.setAttribute("visible", "true");
+    } else {
+      for(i = 0; i < elementNumbers.length; i++) {
+        elementNumbers[i].setAttribute("visible", "false");
+      }
+      console.log("fout");
+    }
+
+  }
+
+  /*check code*/
+  function checkCode(code) {
+    if(code == "5976") {
+      hideNumpadNumbers();
+      elementDoor.setAttribute("visible", "true");
+      for(i=0; i < numpadAnswers.length; i++) {
+        numpadAnswers[i].setAttribute("visible", "true");
+      }
+    }else {
+      hideNumpadNumbers();
+      numpadCode = "";
+    }
+  }
+
+  /*hide all numpadnumbers*/
+  function hideNumpadNumbers() {
+    for(i = 0; i < numpadNumbers.length; i++) {
+      numpadNumbers[i].setAttribute("visible", "false");
+    }
   }
 
 
