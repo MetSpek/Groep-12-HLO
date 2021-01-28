@@ -11,8 +11,8 @@ window.onload = () =>{
   const choice = "12 1.6 40";
   const eindToetsen = document.getElementsByClassName("js--eind--toets");
   const keuzes = document.getElementsByClassName("js--keuze");
-  const keuzeAlive = "12 1.6 27.5";
-  const keuzeDead = "12 1.6 52.5";
+  const keuzeAlive = "10 1.6 27.5";
+  const keuzeDead = "10 1.6 52.5";
 
             /*==========LOPEN===========*/
   const places = document.getElementsByClassName('js--place');
@@ -41,7 +41,8 @@ window.onload = () =>{
   const teleportGate = document.getElementById("js--gate--teleport")
   const teleportRock = document.getElementById("js--rock--teleport")
   const placeholders = document.getElementsByClassName('js--placeholder');
-  const crystalPlace = document.getElementById("js--crystal")
+  const crystalPlace = document.getElementById("js--crystal");
+  const timedDoor = document.getElementById("js--timed--door");
   let scene = document.getElementById('js--scene');
   let plekInput = 0;
   let code = "";
@@ -86,47 +87,57 @@ window.onload = () =>{
   let elementNumber0 = document.getElementById("js--elementNumber0");
 
 
+/*==SOUNDS==*/
+  function playSound(object, soundFile, volume){
+    console.log("play file: " + soundFile + " ,on object: " + object.el);
+
+    object.setAttribute("sound", "src: " + soundFile + "; volume: " + volume );
+
+    object.components.sound.playSound();
+  }
+
+
 /*==EIND PUZZEL==*/
-AFRAME.registerComponent("endgame", {
-  init: function() {
-    this.makeCode = function(){
-      let randomNum = Math.floor(Math.random() * 9) + 1;
-      oplossing = oplossing + randomNum;
-      console.log(oplossing)
-      switch(randomNum){
-        case 0:
-          setEndCode("#toets1")
-          break;
-        case 1:
-          setEndCode("#toets1")
-          break;
-        case 2:
-          setEndCode("#toets2")
-          break;
-        case 3:
-          setEndCode("#toets3")
-          break;
-        case 4:
-          setEndCode("#toets4")
-          break;
-        case 5:
-          setEndCode("#toets5")
-          break;
-        case 6:
-          setEndCode("#toets6")
-          break;
-        case 7:
-          setEndCode("#toets7")
-          break;
-        case 8:
-          setEndCode("#toets8")
-          break;
-        case 9:
-          setEndCode("#toets9")
-          break;
-        default:
+  AFRAME.registerComponent("endgame", {
+    init: function() {
+      this.makeCode = function(){
+        let randomNum = Math.floor(Math.random() * 9) + 1;
+        oplossing = oplossing + randomNum;
+        console.log(oplossing)
+        switch(randomNum){
+          case 0:
+            setEndCode("#toets1")
+            break;
+          case 1:
+            setEndCode("#toets1")
+            break;
+          case 2:
+            setEndCode("#toets2")
+            break;
+          case 3:
+            setEndCode("#toets3")
+            break;
+          case 4:
+            setEndCode("#toets4")
+            break;
+          case 5:
+            setEndCode("#toets5")
+            break;
+          case 6:
+            setEndCode("#toets6")
+            break;
+          case 7:
+            setEndCode("#toets7")
+            break;
+          case 8:
+            setEndCode("#toets8")
+            break;
+          case 9:
+            setEndCode("#toets9")
+            break;
+          default:
+        }
       }
-    }
 
     function setEndCode(model){
       const eindNum = document.getElementsByClassName("js--endGame");
@@ -146,6 +157,7 @@ AFRAME.registerComponent("endgame", {
 
 for (let i = 0; i < eindToetsen.length; i++) {
   eindToetsen[i].addEventListener('click', function(evt){
+    playSound(eindToetsen[i], "#key", "1");
     switch (eindToetsen[i]) {
       case eindToetsen[0]:
         checkEindGetallen("1");
@@ -187,6 +199,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
         plekEindInput = plekEindInput + 1;
         if(plekEindInput == 6){
           teleport(choice);
+          playSound(camera, "#correct", "0.05");
         }
       }
     }
@@ -195,12 +208,12 @@ for (let i = 0; i < eindToetsen.length; i++) {
     keuzes[i].addEventListener('click', function(evt){
       switch (keuzes[i]) {
         case keuzes[0]:
-          console.log("alive")
           teleport(keuzeAlive);
+          playSound(camera, "#alive", "0.05")
           break;
         case keuzes[1]:
-          console.log("dead")
           teleport(keuzeDead);
+          playSound(camera, "#died", "0.2")
         default:
       }
     });
@@ -338,15 +351,18 @@ for (let i = 0; i < eindToetsen.length; i++) {
   // NASA computer keypad
     for (let i = 0; i < nasa_toetsen.length; i++) {
       nasa_toetsen[i].addEventListener("click", function(evt){
+        playSound(nasa_toetsen[i], "#key", "0.1")
         let keyValue = i;
         let d = nasa_keypad_input.length;
         nasa_keypad_input[d] = keyValue;
         if(nasa_keypad_input.toString() == nasa_rdate_psw.toString()){
           nasa_pc_reset_succes();
           nasa_proven = true;
+          playSound(camera, "#correct", "0.1");
         };
         if(nasa_keypad_input.length == 6){
           nasa_keypad_input = [];
+          playSound(camera, "#wrong", "0.1");
           //Hier code om andere foto te laden
         }
       })
@@ -354,15 +370,18 @@ for (let i = 0; i < eindToetsen.length; i++) {
     // NASA door keypad
     for (let i = 0; i < nasa_toetsen_door.length; i++) {
       nasa_toetsen_door[i].addEventListener("click", function(evt){
+        playSound(nasa_toetsen_door[i], "#key", "0.1")
         let keyValue = i;
         let d = nasa_door_input.length;
         nasa_door_input[d] = keyValue;
         console.log(nasa_door_input);
         if(nasa_door_input.toString() == nasa_default_psw.toString() && nasa_proven == true){
           openMetalDoor();
+          playSound(camera, "#correct", "0.1");
         };
         if(nasa_door_input.length == 4){
           nasa_door_input = [];
+          playSound(camera, "#wrong", "0.1");
           //Hier code om andere foto te laden
         }
       })
@@ -382,31 +401,25 @@ for (let i = 0; i < eindToetsen.length; i++) {
 /*==========================KAMER SWITCHEN====================================*/
       for (let i = 0; i < roomDoor.length; i++) {
         roomDoor[i].addEventListener('click', function(evt){
-
+          playSound(camera, "#tp", "0.05");
           /*Hier kijkt welke deuren gelinked zijn*/
           switch(roomDoor[i]){
             case roomDoor[0]:
-              console.log("Daniel  to Eind")
               teleport(danielToEnd)
               break;
             case roomDoor[1]:
-              console.log("Eind to Daniel")
               teleport(endToDaniel)
               break;
             case roomDoor[2]:
-              console.log("Daniel  to Teresa")
               teleport(danielToTeresa)
               break;
             case roomDoor[3]:
-              console.log("Daniel  to Kilian")
               teleport(danielToKilian)
               break;
             case roomDoor[4]:
-            console.log("Teresa to Daniel")
               teleport(teresaToDaniel)
               break;
             case roomDoor[5]:
-              console.log("Kilian to Daniel")
               teleport(kilianToDaniel)
               break;
             default:
@@ -417,17 +430,17 @@ for (let i = 0; i < eindToetsen.length; i++) {
       function teleport(values){
         const fade = document.getElementById('js--fade');
         /*Animatie voor fade to black*/
-        fade.setAttribute('animation', "property: opacity; from:0; to:1; dur:500");
+        fade.setAttribute('animation', "property: opacity; from:0; to:1; dur:300");
 
         /*Timer na 600ms teleporteer*/
         setTimeout(function(){
           camera.setAttribute('position', values);
-        }, 600);
+        }, 400);
 
         /*Timer naa 1000ms zwart weer terug naar normaal*/
         setTimeout(function(){
-          fade.setAttribute('animation', "property: opacity; from:1; to:0; dur:500");
-        }, 1000);
+          fade.setAttribute('animation', "property: opacity; from:1; to:0; dur:300");
+        }, 800);
       }
 
 /*====================OPPAKKEN EN NEERZETTEN=================================*/
@@ -436,6 +449,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
       function addListeners() {
         for (let i = 0; i < pickups.length; i++) {
           pickups[i].addEventListener('click', function(evt){
+            playSound(camera, "#pop", "0.02")
             if (hold == null) {
               switch (pickups[i]) {
                 case pickups[0]:
@@ -458,6 +472,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
             pickups[i].addEventListener('click', function(evt){
               if (hold == null) {
                 elementId = this.id;
+                playSound(camera, "#pop", "0.02")
                 switch(elementId) {
                   case "js--fire":
                     camera.innerHTML += '<a-entity id="js--hold" obj-model="obj: #fire-obj; mtl: #fire-mtl;" position="0.5 -0.2 -0.5" scale="0.1 0.1 0.1"></a-entity>'
@@ -491,6 +506,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
       /*NEERZETTEN*/
       for (let i = 0; i < placeholders.length; i++) {
         placeholders[i].addEventListener('click', function(evt){
+          playSound(camera, "#pop", "0.05")
           switch (hold) {
             case "crystal":
               let crystal = document.createElement('a-entity');
@@ -591,6 +607,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
                   break;
                 case verderKnop[2]:
                   teleport("0 1.6 -13");
+                  playSound(camera, "#laugh", "0.1")
                   break;
                 case verderKnop[3]:
                   teleport(startRoom);
@@ -671,6 +688,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
   /*CODE VOOR INTOETSEN*/
   for (let i = 0; i < toetsen.length; i++) {
     toetsen[i].addEventListener('click', function(evt){
+      playSound(toetsen[i], "#key", "0.5")
       switch (toetsen[i]) {
         case toetsen[0]:
           checkGetallen("1");
@@ -713,6 +731,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
       if(code[plekInput] == input){
         plekInput = plekInput + 1;
         if(plekInput == 5){
+          playSound(camera, "#correct", "0.1");
           removeGate()
         }
       }
@@ -723,14 +742,20 @@ for (let i = 0; i < eindToetsen.length; i++) {
   /*Verplaatsen van dingen*/
   function removeGate(){
     gate.setAttribute("position", "21.5 0 0");
-    teleportGate.setAttribute("position", "22 0 -3")
-    crystalPlace.setAttribute("position", "20.5 0 2")
+    teleportGate.setAttribute("position", "22 0 -3");
+    crystalPlace.setAttribute("position", "20.5 0 2");
+    playSound(gate, "#iron", "0.5");
   }
 
   function removeRock(){
-    rock.setAttribute("animation", "property: position; easing: linear; dur: 2000; to: " + " 20 -2 0")
-    teleportRock.setAttribute("position", "28 0 2")
-    setTimeout(function(){ removeGrave() }, 3000);
+    setTimeout(function(){ playSound(camera, "#grave", "0.1"); }, 500);
+    rock.setAttribute("animation", "property: position; easing: linear; dur: 4000; to: " + " 20 -2 0")
+    setTimeout(function(){
+    teleportRock.setAttribute("position", "28 0 2");
+    timedDoor.setAttribute("position", "28 0.9 8.5");
+  }, 500);
+
+    setTimeout(function(){ removeGrave() }, 7000);
   }
 
   function removeGrave(){
@@ -765,6 +790,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
   /*input code*/
   for (let i = 0; i < keys.length; i++) {
     keys[i].addEventListener('click', function(evt){
+      playSound(keys[i], "#key", "0.5")
       switch (i) {
         case 0:
           numpadCode += "1";
@@ -891,6 +917,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
   /*check code*/
   function checkCode(code) {
     if(code == "5976") {
+      playSound(camera, "#correct", "0.1")
       hideNumpadNumbers();
       elementDoor.setAttribute("visible", "true");
       for(i=0; i < numpadAnswers.length; i++) {
@@ -899,6 +926,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
     }else {
       hideNumpadNumbers();
       numpadCode = "";
+      playSound(camera, "#wrong", "0.1")
     }
   }
 

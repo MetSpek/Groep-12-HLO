@@ -11,6 +11,19 @@
   <a-scene id="js--scene">
 
     <a-assets>
+      <!-- SOUNDS -->
+      <audio id="alive" src="sounds/alive.mp3"></audio>
+      <audio id="died" src="sounds/died.mp3"></audio>
+      <audio id="easter" src="sounds/easter.mp3"></audio>
+      <audio id="grave" src="sounds/grave.mp3"></audio>
+      <audio id="iron" src="sounds/iron.mp3"></audio>
+      <audio id="key" src="sounds/key.mp3"></audio>
+      <audio id="laugh" src="sounds/laugh.mp3"></audio>
+      <audio id="tp" src="sounds/tp.mp3"></audio>
+      <audio id="pop" src="sounds/pop.mp3"></audio>
+      <audio id="wrong" src="sounds/wrong.mp3"></audio>
+      <audio id="correct" src="sounds/correct.mp3"></audio>
+
       <a-asset-item id="teledoor" src="Models/ModelDaniel/TeleportDoor.gltf"></a-asset-item>
       <a-asset-item id="teleport" src="Models/ModelDaniel/TeleportPad.gltf"></a-asset-item>
       <!-- Kilian assets-->
@@ -122,7 +135,7 @@
   <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="red" position="16.5 1.5 42.5"></a-box>
 
 
-  <a-entity class="js--interact js--roomDoor" gltf-model="#teledoor" position="28 0.9 8.5" rotation="0 90 0"></a-entity>
+  <a-entity class="js--interact js--roomDoor" id="js--timed--door" gltf-model="#teledoor" position="28 -10 8.5" rotation="0 90 0"></a-entity>
   <a-entity class="js--interact js--roomDoor" gltf-model="#teledoor" position="0 0.9 35.5" rotation="0 -90 0"></a-entity>
 
 <!-- TUTORIAL ROOM -->
