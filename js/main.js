@@ -36,9 +36,6 @@ window.onload = () =>{
   var thirdGood = false;
   var fourthGood = false;
 
-
-
-
   /*==KAMER TERESA==*/
   let elementId = "";
   let numpadCode = "";
@@ -72,9 +69,167 @@ window.onload = () =>{
   let elementNumber0 = document.getElementById("js--elementNumber0");
 
 
-
   /*==KAMER KILIAN==*/
+  AFRAME.registerComponent("nasa-input", {
+    init: function() {},
+    update: function() {},
+    tick: function() {},
+    remove: function() {},
+    pause: function() {},
+    play: function() {}
+  });
 
+  const nasa_toetsen = document.getElementsByClassName("js--nasa-toets");
+  const nasa_toetsen_door = document.getElementsByClassName("js--nasa-toets-door");
+  console.log(nasa_toetsen_door);
+  const nasa_screen_1 = document.getElementById("js--nasa-screen-1");
+  const nasa_screen_2 = document.getElementById("js--nasa-screen-2");
+  const nasa_screen_3 = document.getElementById("js--nasa-screen-3");
+  const dv_nasa_startup = document.getElementById("js--nasa-startup");
+  const dv_nasa_reset = document.getElementById("js--nasa-reset");
+  const dv_nasa_next = document.getElementById("js--nasa-next");
+  const nasa_dates = document.getElementsByClassName("js--nasa-date");
+  var nasa_keypad_input = [];
+  var nasa_door_input = [];
+  var nasa_default_psw = [1, 2, 3, 4];
+  var nasa_proven = false;
+
+  // Get random date this week
+  let d = new Date();
+  let d7 = new Date(d - (1000*60*60*24*(Math.floor(Math.random() * 8))));
+  // 3 arrays are made and filled (d-m-y)
+  // Days
+  var d7d = d7.getDate();
+  var dArray = [0];
+  var sd7d = d7d.toString();
+  for (var i = 0, len = sd7d.length; i < len; i += 1) {
+      dArray.push(+sd7d.charAt(i));
+  }
+  // Months  -- +1 because .getMonth => 0-11
+  var d7m = d7.getMonth()+1;
+  var mArray = [0];
+  var sd7m = d7m.toString();
+  for (var i = 0, len = sd7m.length; i < len; i += 1) {
+      mArray.push(+sd7m.charAt(i));
+  }
+  // Year
+  var d7y = d7.getFullYear();
+  var yArray = [0];
+  var sd7y = d7y.toString();
+  for (var i = 0, len = sd7y.length; i < len; i += 1) {
+      yArray.push(+sd7y.charAt(i));
+  }
+
+  //set computer date password
+  const nasa_rdate_psw = [];
+  nasa_rdate_psw[1] = dArray.pop();
+  nasa_rdate_psw[0] = dArray.pop();
+  nasa_rdate_psw[3] = mArray.pop();
+  nasa_rdate_psw[2] = mArray.pop();
+  nasa_rdate_psw[5] = yArray.pop();
+  nasa_rdate_psw[4] = yArray.pop();
+
+  //set API URL correct
+  const nasa_rdate_url = [];
+  nasa_rdate_url[0] = "2";
+  nasa_rdate_url[1] = "0";
+  nasa_rdate_url[2] = nasa_rdate_psw[4].toString();
+  nasa_rdate_url[3] = nasa_rdate_psw[5].toString();
+  nasa_rdate_url[4] = "-";
+  nasa_rdate_url[5] = nasa_rdate_psw[2].toString();
+  nasa_rdate_url[6] = nasa_rdate_psw[3].toString();
+  nasa_rdate_url[7] = "-";
+  nasa_rdate_url[8] = nasa_rdate_psw[0].toString();
+  nasa_rdate_url[9] = nasa_rdate_psw[1].toString();
+  console.log(nasa_rdate_url.join(""));
+
+  function nasa_pc_startup(){
+    nasa_screen_1.setAttribute("src","#nasa_bg");
+    nasa_screen_2.setAttribute("src","#nasa_bg");
+    nasa_screen_3.setAttribute("src","#nasa_bg");
+    dv_nasa_reset.setAttribute("color","rgb(255, 0, 0)")
+    dv_nasa_reset.addEventListener("click", nasa_pc_reset);
+  };
+
+  // Pick random picture date to display
+  function nasa_week_date(){
+    let d = new Date();
+    let d7 = new Date(d - (1000*60*60*24*7));
+  };
+
+  function openMetalDoor(){
+    document.getElementById("js--nasa-door1").setAttribute("visible","false");
+    document.getElementById("js--nasa-door2").setAttribute("visible","true");
+  };
+
+  function nasa_pc_reset(){
+    // Show user NASA picture is loading
+    nasa_screen_1.setAttribute("src","#nasa_bg_l");
+    nasa_screen_2.setAttribute("src","#nasa_bg_l");
+    nasa_screen_3.setAttribute("src","#nasa_bg_l");
+
+    // Load NASA picture
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const BASE_URL = "https://api.nasa.gov/planetary/apod?";
+    const API_URL = "date=" + nasa_rdate_url.join("") + "&api_key=DEMO_KEY";
+    fetch(proxyurl + BASE_URL + API_URL)
+    .then(response => response.json())
+    .then(data => nasa_screen_2.setAttribute("src", data.hdurl))
+    // Show normal screens and display buttons
+    nasa_screen_1.setAttribute("src","#nasa_bg_q");
+    nasa_screen_3.setAttribute("src","#nasa_bg_i");
+    for(let i = 0; i < nasa_toetsen.length; i++){
+      nasa_toetsen[i].setAttribute("visible", "true");
+    };
+  };
+
+  // Padlock reset on
+  function nasa_pc_reset_succes(){
+    nasa_screen_1.setAttribute("src","#nasa_bg");
+    nasa_screen_2.setAttribute("src","#nasa_bg_s");
+    nasa_screen_3.setAttribute("src","#nasa_bg");
+    for(let i = 0; i < nasa_toetsen.length; i++){
+      nasa_toetsen[i].setAttribute("visible", "false");
+    };
+  };
+
+
+  // Dev tools
+  dv_nasa_startup.addEventListener("click", nasa_pc_startup);
+  dv_nasa_next.addEventListener("click", nasa_pc_reset_succes);
+
+  // NASA computer keypad
+    for (let i = 0; i < nasa_toetsen.length; i++) {
+      nasa_toetsen[i].addEventListener("click", function(evt){
+        let keyValue = i;
+        let d = nasa_keypad_input.length;
+        nasa_keypad_input[d] = keyValue;
+        if(nasa_keypad_input.toString() == nasa_rdate_psw.toString()){
+          nasa_pc_reset_succes();
+          nasa_proven = true;
+        };
+        if(nasa_keypad_input.length == 6){
+          nasa_keypad_input = [];
+          //Hier code om andere foto te laden
+        }
+      })
+    };
+    // NASA door keypad
+    for (let i = 0; i < nasa_toetsen_door.length; i++) {
+      nasa_toetsen_door[i].addEventListener("click", function(evt){
+        let keyValue = i;
+        let d = nasa_door_input.length;
+        nasa_door_input[d] = keyValue;
+        console.log(nasa_door_input);
+        if(nasa_door_input.toString() == nasa_default_psw.toString() && nasa_proven == true){
+          openMetalDoor();
+        };
+        if(nasa_door_input.length == 4){
+          nasa_door_input = [];
+          //Hier code om andere foto te laden
+        }
+      })
+    };
 
 
 
@@ -298,7 +453,6 @@ window.onload = () =>{
 
 /*=============================CODE DANIEL====================================*/
 
-
   /*CODE VOOR PUZZEL CREATIE*/
   makeCode();
 
@@ -359,7 +513,6 @@ window.onload = () =>{
     code = code + nummer
     return nummer
   }
-
 
   /*CODE VOOR INTOETSEN*/
   for (let i = 0; i < toetsen.length; i++) {
