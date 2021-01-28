@@ -4,12 +4,29 @@ window.onload = () =>{
   const verderKnop = document.getElementsByClassName('js--tutorial--knop');
   const tutorialBox = document.getElementsByClassName('js--tutorial--box');
 
+  /*==EIND PUZZEL*/
+  var oplossing = "";
+  var plekCode = 0;
+  var plekEindInput = 0;
+  const choice = "12 1.6 40";
+  const eindToetsen = document.getElementsByClassName("js--eind--toets");
+  const keuzes = document.getElementsByClassName("js--keuze");
+  const keuzeAlive = "12 1.6 27.5";
+  const keuzeDead = "12 1.6 52.5";
+
             /*==========LOPEN===========*/
   const places = document.getElementsByClassName('js--place');
   const roomPlace = document.getElementsByClassName('js--roomPlace')
   const camera = document.getElementById('js--camera');
   const roomDoor = document.getElementsByClassName('js--roomDoor');
 
+  const startRoom = "-8 1.6 0";
+  const danielToTeresa = "-13.5 1.6 -3.5";
+  const danielToKilian = "19 1.6 -21";
+  const kilianToDaniel = "22 1.6 4";
+  const teresaToDaniel = "19 1.6 -4";
+  const danielToEnd = "0 1.6 40";
+  const endToDaniel= "28 1.6 2";
 
   /*==KAMER DANIEL==*/
   const tegelOne = document.getElementById("js--code1");
@@ -68,6 +85,126 @@ window.onload = () =>{
   let elementNumber9 = document.getElementById("js--elementNumber9");
   let elementNumber0 = document.getElementById("js--elementNumber0");
 
+
+/*==EIND PUZZEL==*/
+AFRAME.registerComponent("endgame", {
+  init: function() {
+    this.makeCode = function(){
+      let randomNum = Math.floor(Math.random() * 9) + 1;
+      oplossing = oplossing + randomNum;
+      console.log(oplossing)
+      switch(randomNum){
+        case 0:
+          setEndCode("#toets1")
+          break;
+        case 1:
+          setEndCode("#toets1")
+          break;
+        case 2:
+          setEndCode("#toets2")
+          break;
+        case 3:
+          setEndCode("#toets3")
+          break;
+        case 4:
+          setEndCode("#toets4")
+          break;
+        case 5:
+          setEndCode("#toets5")
+          break;
+        case 6:
+          setEndCode("#toets6")
+          break;
+        case 7:
+          setEndCode("#toets7")
+          break;
+        case 8:
+          setEndCode("#toets8")
+          break;
+        case 9:
+          setEndCode("#toets9")
+          break;
+        default:
+      }
+    }
+
+    function setEndCode(model){
+      const eindNum = document.getElementsByClassName("js--endGame");
+        eindNum[plekCode].removeAttribute("gltf-model");
+        eindNum[plekCode].setAttribute("gltf-model", model)
+        plekCode = plekCode + 1;
+    }
+  },
+  update: function() {
+    this.makeCode();
+  },
+  tick: function() {},
+  remove: function() {},
+  pause: function() {},
+  play: function() {}
+});
+
+for (let i = 0; i < eindToetsen.length; i++) {
+  eindToetsen[i].addEventListener('click', function(evt){
+    switch (eindToetsen[i]) {
+      case eindToetsen[0]:
+        checkEindGetallen("1");
+        break;
+      case eindToetsen[1]:
+        checkEindGetallen("2");
+        break;
+      case eindToetsen[2]:
+        checkEindGetallen("3");
+        break;
+      case eindToetsen[3]:
+        checkEindGetallen("4");
+        break;
+      case eindToetsen[4]:
+        checkEindGetallen("5");
+        break;
+      case eindToetsen[5]:
+        checkEindGetallen("6");
+        break;
+      case eindToetsen[6]:
+        checkEindGetallen("7");
+        break;
+      case eindToetsen[7]:
+        checkEindGetallen("8");
+        break;
+      case eindToetsen[8]:
+        checkEindGetallen("9");
+        break;
+      case eindToetsen[9]:
+        checkEindGetallen("0");
+        break;
+      default:
+    }
+  });
+}
+
+  function checkEindGetallen(input){
+      if(oplossing[plekEindInput] == input){
+        plekEindInput = plekEindInput + 1;
+        if(plekEindInput == 6){
+          teleport(choice);
+        }
+      }
+    }
+
+  for (let i = 0; i < keuzes.length; i++) {
+    keuzes[i].addEventListener('click', function(evt){
+      switch (keuzes[i]) {
+        case keuzes[0]:
+          console.log("alive")
+          teleport(keuzeAlive);
+          break;
+        case keuzes[1]:
+          console.log("dead")
+          teleport(keuzeDead);
+        default:
+      }
+    });
+  }
 
   /*==KAMER KILIAN==*/
   AFRAME.registerComponent("nasa-input", {
@@ -196,7 +333,7 @@ window.onload = () =>{
 
   // Dev tools
   dv_nasa_startup.addEventListener("click", nasa_pc_startup);
-  dv_nasa_next.addEventListener("click", nasa_pc_reset_succes);
+  //dv_nasa_next.addEventListener("click", nasa_pc_reset_succes);
 
   // NASA computer keypad
     for (let i = 0; i < nasa_toetsen.length; i++) {
@@ -249,14 +386,30 @@ window.onload = () =>{
           /*Hier kijkt welke deuren gelinked zijn*/
           switch(roomDoor[i]){
             case roomDoor[0]:
-              teleport(entranceTwo)
+              console.log("Daniel  to Eind")
+              teleport(danielToEnd)
               break;
             case roomDoor[1]:
-              teleport(entranceOne)
+              console.log("Eind to Daniel")
+              teleport(endToDaniel)
+              break;
+            case roomDoor[2]:
+              console.log("Daniel  to Teresa")
+              teleport(danielToTeresa)
+              break;
+            case roomDoor[3]:
+              console.log("Daniel  to Kilian")
+              teleport(danielToKilian)
+              break;
+            case roomDoor[4]:
+            console.log("Teresa to Daniel")
+              teleport(teresaToDaniel)
+              break;
+            case roomDoor[5]:
+              console.log("Kilian to Daniel")
+              teleport(kilianToDaniel)
               break;
             default:
-              console.log("fucked up")
-              break;
           }
       });
     }
@@ -289,6 +442,7 @@ window.onload = () =>{
                   camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
                   hold = "box";
                   this.remove();
+                  console.log(hold)
                   break;
                 case pickups[1]:
                   camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
@@ -337,7 +491,6 @@ window.onload = () =>{
       /*NEERZETTEN*/
       for (let i = 0; i < placeholders.length; i++) {
         placeholders[i].addEventListener('click', function(evt){
-          console.log(i);
           switch (hold) {
             case "crystal":
               let crystal = document.createElement('a-entity');
@@ -362,6 +515,7 @@ window.onload = () =>{
               setTimeout(function(){
                 teleport("0 1.6 -9")
               }, 2000);
+              break;
             case "fire":
               fire = document.createElement('a-entity');
               fire.setAttribute("id", "js--fire");
@@ -439,7 +593,7 @@ window.onload = () =>{
                   teleport("0 1.6 -13");
                   break;
                 case verderKnop[3]:
-                  teleport("0 1.6 -13");
+                  teleport(startRoom);
                   break;
                 default:
                   console.log("minder nice")
@@ -556,10 +710,8 @@ window.onload = () =>{
 
   /*CHECKED OF CODE KLOPT*/
   function checkGetallen(input){
-      console.log("cunt");
       if(code[plekInput] == input){
         plekInput = plekInput + 1;
-        console.log("goed");
         if(plekInput == 5){
           removeGate()
         }
