@@ -46,6 +46,8 @@ window.onload = () =>{
   });
 
   const nasa_toetsen = document.getElementsByClassName("js--nasa-toets");
+  const nasa_toetsen_door = document.getElementsByClassName("js--nasa-toets-door");
+  console.log(nasa_toetsen_door);
   const nasa_screen_1 = document.getElementById("js--nasa-screen-1");
   const nasa_screen_2 = document.getElementById("js--nasa-screen-2");
   const nasa_screen_3 = document.getElementById("js--nasa-screen-3");
@@ -54,6 +56,9 @@ window.onload = () =>{
   const dv_nasa_next = document.getElementById("js--nasa-next");
   const nasa_dates = document.getElementsByClassName("js--nasa-date");
   var nasa_keypad_input = [];
+  var nasa_door_input = [];
+  var nasa_default_psw = [1, 2, 3, 4];
+  var nasa_proven = false;
 
   // Get random date this week
   let d = new Date();
@@ -89,7 +94,6 @@ window.onload = () =>{
   nasa_rdate_psw[2] = mArray.pop();
   nasa_rdate_psw[5] = yArray.pop();
   nasa_rdate_psw[4] = yArray.pop();
-  console.log(nasa_rdate_psw);
 
   //set API URL correct
   const nasa_rdate_url = [];
@@ -109,12 +113,19 @@ window.onload = () =>{
     nasa_screen_1.setAttribute("src","#nasa_bg");
     nasa_screen_2.setAttribute("src","#nasa_bg");
     nasa_screen_3.setAttribute("src","#nasa_bg");
+    dv_nasa_reset.setAttribute("color","rgb(255, 0, 0)")
+    dv_nasa_reset.addEventListener("click", nasa_pc_reset);
   };
 
   // Pick random picture date to display
   function nasa_week_date(){
     let d = new Date();
     let d7 = new Date(d - (1000*60*60*24*7));
+  };
+
+  function openMetalDoor(){
+    document.getElementById("js--nasa-door1").setAttribute("visible","false");
+    document.getElementById("js--nasa-door2").setAttribute("visible","true");
   };
 
   function nasa_pc_reset(){
@@ -151,10 +162,9 @@ window.onload = () =>{
 
   // Dev tools
   dv_nasa_startup.addEventListener("click", nasa_pc_startup);
-  dv_nasa_reset.addEventListener("click", nasa_pc_reset);
   dv_nasa_next.addEventListener("click", nasa_pc_reset_succes);
 
-  // NASA keypad
+  // NASA computer keypad
     for (let i = 0; i < nasa_toetsen.length; i++) {
       nasa_toetsen[i].addEventListener("click", function(evt){
         let keyValue = i;
@@ -162,9 +172,26 @@ window.onload = () =>{
         nasa_keypad_input[d] = keyValue;
         if(nasa_keypad_input.toString() == nasa_rdate_psw.toString()){
           nasa_pc_reset_succes();
+          nasa_proven = true;
         };
         if(nasa_keypad_input.length == 6){
           nasa_keypad_input = [];
+          //Hier code om andere foto te laden
+        }
+      })
+    };
+    // NASA door keypad
+    for (let i = 0; i < nasa_toetsen_door.length; i++) {
+      nasa_toetsen_door[i].addEventListener("click", function(evt){
+        let keyValue = i;
+        let d = nasa_door_input.length;
+        nasa_door_input[d] = keyValue;
+        console.log(nasa_door_input);
+        if(nasa_door_input.toString() == nasa_default_psw.toString() && nasa_proven == true){
+          openMetalDoor();
+        };
+        if(nasa_door_input.length == 4){
+          nasa_door_input = [];
           //Hier code om andere foto te laden
         }
       })

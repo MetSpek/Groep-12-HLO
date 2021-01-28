@@ -123,12 +123,15 @@
     <a-entity class="js--interact js--place" gltf-model="#teleport" position="17 0 -16" scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" gltf-model="#teleport" position="19 0 -19" scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" gltf-model="#teleport" position="17.5 0 -9.5" scale="0.5 0.5 0.5"></a-entity>
-    <a-box src="#nasa_door" width="1.1" height="2.2" depth="0.2" position="18.2 1 -7.5"></a-box>
     <a-box src="#nasa_keypad" width="4" height="2.6" depth="0.2" position="17.8 1 -7.42"></a-box>
+    <!-- Metal doors -->
+    <a-box id="js--nasa-door1" src="#nasa_door" width="1.1" height="2.2" depth="0.2" position="18.2 1 -7.5" visible="true" rotation="0 180 0"></a-box>
+    <a-box id="js--nasa-door2" src="#nasa_door" width="1.1" height="2.2" depth="0.2" position="18.75 1 -8.05" visible="false" rotation="0 90 0"></a-box>
+
 
     <!-- Scenery -->
     <a-box src="#nasa_keypad" width="1.1" height="2.2" depth="1.2" position="22 1.1 -12.5"></a-box>
-    <a-box src="#nasa_keypad" width="0.7" height="1.2" depth="2.1" position="22 0.6 -17.5"></a-box>
+    <a-box src="#nasa_keypad" width="0.7" height="1.2" depth="2.2" position="22 0.6 -17.5"></a-box>
     <a-box src="#nasa_keypad" width="1" height="3" depth="15" color="rgb(90, 90, 90)" position="7.7 1.5 -15"></a-box>
     <a-box src="#nasa_keypad" width="1" height="3" depth="5.2" color="rgb(90, 90, 90)" position="9.3 1.5 -9" rotation="0 45 -5"></a-box>
     <a-box src="#nasa_keypad" width="1" height="3" depth="5.2" color="rgb(90, 90, 90)" position="9.3 1.5 -22" rotation="0 -45 -5"></a-box>
@@ -137,18 +140,19 @@
     <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="10 1.85 -9.2" rotation="0 45 -5"></a-box>
     <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="10 1.85 -21.1" rotation="0 -45 -5"></a-box>
     <!-- Buttons, keypad -->
-    <a-box class="js--interact" id="js--nasa-startup" width="0.1" height="0.1" depth="0.1" position="15.5 1.5 -23"></a-box>
+    <a-box class="js--interact" id="js--nasa-startup" color="rgb(255, 255, 0)" width="0.1" height="0.1" depth="0.1" position="22 0.6 -18.7"></a-box>
+    <a-sphere class="js--interact" id="js--nasa-reset" color="rgb(0, 0, 0)" radius="0.06" position="17.1 1.04 -7.53"></a-sphere>
     <a-box src="#nasa_keypad" width="0.4" height="0.5" depth="0.05" position="17.2 1.17 -7.54" color="rgb(220, 220, 220)"></a-box>
-    <a-entity class="js--interact js--toets" gltf-model="#toets1" position="17.3 1.5 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets2" position="17.2 1.5 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets3" position="17.1 1.5 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets4" position="17.3 1.4 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets5" position="17.2 1.4 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets6" position="17.1 1.4 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets7" position="17.3 1.3 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets8" position="17.2 1.3 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets9" position="17.1 1.3 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity class="js--interact js--toets" gltf-model="#toets0" position="17.2 1.2 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets0" position="17.2 1.2 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets1" position="17.3 1.5 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets2" position="17.2 1.5 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets3" position="17.1 1.5 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets4" position="17.3 1.4 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets5" position="17.2 1.4 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets6" position="17.1 1.4 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets7" position="17.3 1.3 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets8" position="17.2 1.3 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity class="js--interact js--nasa-toets-door" gltf-model="#toets9" position="17.1 1.3 -7.55" rotation="90 0 180" scale="0.45 0.45 0.45"></a-entity>
 
     <!-- Buttons computer screen -->
     <a-entity nasa-date-btn class="js--interact js--nasa-toets" visible="false" gltf-model="#toets0" position="15.69 1.25 -16.8" rotation="45 90 0" scale="0.45 0.45 0.45"></a-entity>
@@ -163,7 +167,6 @@
     <a-entity nasa-date-btn class="js--interact js--nasa-toets" visible="false" gltf-model="#toets9" position="15.625 1.32 -16.9" rotation="45 90 0" scale="0.45 0.45 0.45"></a-entity>
 
     <!-- Develep -->
-    <a-box class="js--interact" id="js--nasa-reset" width="0.1" height="0.1" depth="0.1" position="15.5 1.3 -13.5"></a-box>
     <a-box class="js--interact" id="js--nasa-next" width="0.1" height="0.1" depth="0.1" position="15.5 1.1 -13.5"></a-box>
 
     <!-- computer screens -->
