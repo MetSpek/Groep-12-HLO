@@ -49,6 +49,18 @@
       <a-asset-item id="toets0" src="Models/ModelDaniel/Puzzel/Toets0.gltf"></a-asset-item>
 
 
+<!-- ASSETS TERESA -->
+    <a-asset-item id="room-obj" src="Models/ModelTeresa/kamer/kamer.obj"></a-asset-item>
+    <a-asset-item id="room-mtl" src="Models/ModelTeresa/kamer/kamer.mtl"></a-asset-item>
+
+    <a-asset-item id="fire-obj" src="Models/ModelTeresa/blokken/fire.obj"></a-asset-item>
+    <a-asset-item id="fire-mtl" src="Models/ModelTeresa/blokken/fire.mtl"></a-asset-item>
+    <a-asset-item id="water-obj" src="Models/ModelTeresa/blokken/water.obj"></a-asset-item>
+    <a-asset-item id="water-mtl" src="Models/ModelTeresa/blokken/water.mtl"></a-asset-item>
+    <a-asset-item id="air-obj" src="Models/ModelTeresa/blokken/air.obj"></a-asset-item>
+    <a-asset-item id="air-mtl" src="Models/ModelTeresa/blokken/air.mtl"></a-asset-item>
+    <a-asset-item id="earth-obj" src="Models/ModelTeresa/blokken/earth.obj"></a-asset-item>
+    <a-asset-item id="earth-mtl" src="Models/ModelTeresa/blokken/earth.mtl"></a-asset-item>
 
     </a-assets>
 
@@ -120,6 +132,71 @@
     <a-entity class="js--interact js--toets" gltf-model="#toets8" position="17.5 0.7 1" rotation="20 90 0"></a-entity>
     <a-entity class="js--interact js--toets" gltf-model="#toets9" position="17.5 0.7 0.7" rotation="20 90 0"></a-entity>
     <a-entity class="js--interact js--toets" gltf-model="#toets0" position="17.5 0.7 0.4" rotation="20 90 0"></a-entity>
+
+
+
+    <!-- TERESA HAAR KAMER -->
+    <a-entity obj-model = "obj: #room-obj; mtl: #room-mtl;" position = "-10 0 0" scale="2 2 2"></a-entity>
+
+    <a-entity id="js--fire" class="js--interact js--pickup" obj-model="obj: #fire-obj; mtl: #fire-mtl;" position="-12 0.5 1" scale="0.1 0.1 0.1"></a-entity>
+    <a-entity id="js--water" class="js--interact js--pickup" obj-model="obj: #water-obj; mtl: #water-mtl;" position="-12 0.5 0.5" scale="0.1 0.1 0.1"></a-entity>
+    <a-entity id="js--earth" class="js--interact js--pickup" obj-model="obj: #earth-obj; mtl: #earth-mtl;" position="-12 0.5 0" scale="0.1 0.1 0.1"></a-entity>
+    <a-entity id="js--air" class="js--interact js--pickup" obj-model="obj: #air-obj; mtl: #air-mtl;" position="-12 0.5 -0.5" scale="0.1 0.1 0.1"></a-entity>
+
+    <a-entity id="js--numpadNumber1" class="js--numpadNumber" gltf-model="#toets1" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber2" class="js--numpadNumber" gltf-model="#toets2" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber3" class="js--numpadNumber" gltf-model="#toets3" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber4" class="js--numpadNumber" gltf-model="#toets4" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber5" class="js--numpadNumber" gltf-model="#toets5" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber6" class="js--numpadNumber" gltf-model="#toets6" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber7" class="js--numpadNumber" gltf-model="#toets7" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber8" class="js--numpadNumber" gltf-model="#toets8" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber9" class="js--numpadNumber" gltf-model="#toets9" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity id="js--numpadNumber0" class="js--numpadNumber" gltf-model="#toets0" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+
+    <a-entity id="js--elementNumber1" class="js--elementNumber" gltf-model="#toets1" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber2" class="js--elementNumber" gltf-model="#toets2" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber3" class="js--elementNumber" gltf-model="#toets3" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber4" class="js--elementNumber" gltf-model="#toets4" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber5" class="js--elementNumber" gltf-model="#toets5" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber6" class="js--elementNumber" gltf-model="#toets6" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber7" class="js--elementNumber" gltf-model="#toets7" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber8" class="js--elementNumber" gltf-model="#toets8" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber9" class="js--elementNumber" gltf-model="#toets9" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+    <a-entity id="js--elementNumber0" class="js--elementNumber" gltf-model="#toets0" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
+
+    <a-entity class="js--numpadAnswer" gltf-model="#toets3" position="-7.8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+    <a-entity class="js--numpadAnswer" gltf-model="#toets7" position="-8.2 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
+
+    <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 1" width="0.1" height="0.1" depth="0.1"></a-box>
+    <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 0.5" width="0.1" height="0.1" depth="0.1"></a-box>
+    <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 0" width="0.1" height="0.1" depth="0.1"></a-box>
+    <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 -0.5" width="0.1" height="0.1" depth="0.1"></a-box>
+    <a-cylinder class="js--interact js--placeholder" color="grey" position="-11 0.5 0.25" height="0.01" radius="0.2"></a-cylinder>
+
+    <a-box color="grey" height="0.1" width="1.2" depth="1.2" position="-8 0.1 -3"></a-box>
+    <a-box color="grey" height="1.5" width="0.5" depth="0.5" position="-8 0.5 -3"></a-box>
+    <a-box color="grey" height="0.2" width="1.2" depth="1.5" position="-8 1.39 -3" rotation="45 0 0"></a-box>
+
+    <a-entity class="js--interact js--toets" gltf-model="#toets1" position="-8.3 1.9 -3.4" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets2" position="-8 1.9 -3.4" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets3" position="-7.7 1.9 -3.4" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets4" position="-8.3 1.7 -3.2" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets5" position="-8 1.7 -3.2" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets6" position="-7.7 1.7 -3.2" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets7" position="-8.3 1.5 -3" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets8" position="-8 1.5 -3" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets9" position="-7.7 1.5 -3" rotation="45 0 0"></a-entity>
+    <a-entity class="js--interact js--toets" gltf-model="#toets0" position="-8 1.3 -2.8" rotation="45 0 0"></a-entity>
+    <a-box class="js--interact js--toets" width="0.2" height="0.1" depth="0.2" color="red" class="js--interact js--toets" position="-8.3 1.05 -2.55" rotation="45 0 0"></a-box>
+    <a-box class="js--interact js--toets" width="0.2" height="0.1" depth="0.2" color="green" class="js--interact js--toets" position="-7.7 1.05 -2.55" rotation="45 0 0"></a-box>
+
+
+    <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="-10 0.2 0.25" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="-8 0.2 -1.5" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="-13.5 0.2 -3.5" scale="0.5 0.5 0.5"></a-entity>
+
+    <a-entity id="js--elementDoor" class="js--interact" gltf-model="#teledoor" position="-14.5 0.9 -3.5" visible="false"></a-entity>
 
   </a-scene>
 </body>
