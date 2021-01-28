@@ -1,24 +1,35 @@
-// Get NASA picture of the day
-AFRAME.registerComponent("reloader-nasa", {
-  init: function() {
-    const nasa_imgs = document.querySelectorAll("[nasa-picture]");
-    const BASE_URL = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
-    this.newNasa= function(){
-      for(let i = 0; i < nasa_imgs.length; i++){
-        fetch(BASE_URL)
-        .then(response => response.json())
-        .then(data => console.log(data.hdurl));
+window.onload = () =>{
+  //APOD source to text
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const BASE_URL = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+  const apod_url = ""
+  fetch(proxyurl + BASE_URL)
+  .then(response => response.json())
+  .then(data => apod_url = JSON.stringify(data.hdurl)));
 
-      }
-    }
-    this.el.addEventListener("mouseenter",this.newNasa);
-  },
-  update: function() {
-    this.newNasa();
-    console.log("Ik ben geupdate");
-  },
-  tick: function() {},
-  remove: function() {},
-  pause: function() {},
-  play: function() {}
-});
+
+  console.log("Test");
+  console.log(apod_url);
+
+  const nasa_screen_1 = document.getElementById("js--nasa-screen-1");
+  const nasa_screen_2 = document.getElementById("js--nasa-screen-2");
+
+  function nasa_pc_startup(){
+    nasa_screen_1.setAttribute("src","#nasa_bg");
+    nasa_screen_2.setAttribute("src","#nasa_bg");
+  };
+
+  function nasa_pc_reset(){
+    nasa_screen_1.setAttribute("src","#nasa_bg_q");
+    nasa_screen_2.setAttribute("src","#nasa_bg");
+  };
+
+
+  function newNasa(){
+
+  };
+  // Startup PC
+
+
+  // Reset password on lock
+}
