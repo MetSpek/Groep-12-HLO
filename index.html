@@ -35,6 +35,10 @@
             <img id="nasa_bg_s" src="textures/ng_nasa_pc_s.png">
             <img id="nasa_door" src="textures/nasa_door.png">
             <img id="nasa_keypad" src="textures/nasa_keypad.png">
+            <img id="nasa_bigscreen1" src="textures/nasa_bigscreen1.jpg">
+            <img id="nasa_bigscreen2" src="textures/nasa_bigscreen2.jpg">
+            <img id="nasa_bigscreen3" src="textures/nasa_bigscreen3.jpg">
+            <img id="nasa_bigscreen4" src="textures/nasa_bigscreen4.jpg">
 
 <!-- ASSETS DANIEL -->
       <!-- EASTER EGG ;) -->
@@ -267,10 +271,10 @@
     <a-box src="#nasa_keypad" width="1" height="3" depth="15" color="rgb(90, 90, 90)" position="7.7 1.5 -15"></a-box>
     <a-box src="#nasa_keypad" width="1" height="3" depth="5.2" color="rgb(90, 90, 90)" position="9.3 1.5 -9" rotation="0 45 -5"></a-box>
     <a-box src="#nasa_keypad" width="1" height="3" depth="5.2" color="rgb(90, 90, 90)" position="9.3 1.5 -22" rotation="0 -45 -5"></a-box>
-    <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="8.5 1.85 -17.1" rotation="0 0 -5"></a-box>
-    <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="8.5 1.85 -12.9" rotation="0 0 -5"></a-box>
-    <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="10 1.85 -9.2" rotation="0 45 -5"></a-box>
-    <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="10 1.85 -21.1" rotation="0 -45 -5"></a-box>
+    <a-box src="#nasa_bigscreen1" width="0.1" height="2" depth="4" position="8.5 1.85 -17.1" rotation="0 0 -5"></a-box>
+    <a-box src="#nasa_bigscreen2" width="0.1" height="2" depth="4" position="8.5 1.85 -12.9" rotation="0 0 -5"></a-box>
+    <a-box src="#nasa_bigscreen3" width="0.1" height="2" depth="4" position="10 1.85 -9.2" rotation="0 45 -5"></a-box>
+    <a-box src="#nasa_bigscreen4" width="0.1" height="2" depth="4" position="10 1.85 -21" rotation="0 -45 -5"></a-box>
 
     <!-- Buttons, keypad -->
     <a-box class="js--interact" id="js--nasa-startup" color="rgb(255, 255, 0)" width="0.1" height="0.1" depth="0.1" position="22 0.6 -18.7"></a-box>
@@ -306,13 +310,12 @@
     <a-plane id="js--nasa-screen-2" nasa-picture src="#nasa_bg_black" width="1.1" height="1" position="15.6 1.35 -15.6" rotation="-45 90 0"></a-plane>
     <a-plane id="js--nasa-screen-3" nasa-picture src="#nasa_bg_black" width="1.1" height="1" position="15.6 1.35 -16.8" rotation="-45 90 0"></a-plane>
 
-<!--
-    <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -16.45" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -16.55" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -16.75" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -16.85" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -17.05" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
-    <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -17.15" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity> -->
+    <a-entity nasa-input class="js--nasa-date" gltf-model="#toets0" position="15.29 1.642 -16.45" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity nasa-input class="js--nasa-date" gltf-model="#toets0" position="15.29 1.642 -16.55" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity nasa-input class="js--nasa-date" gltf-model="#toets0" position="15.29 1.642 -16.75" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity nasa-input class="js--nasa-date" gltf-model="#toets0" position="15.29 1.642 -16.85" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity nasa-input class="js--nasa-date" gltf-model="#toets0" position="15.29 1.642 -17.05" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
+    <a-entity nasa-input class="js--nasa-date" gltf-model="#toets0" position="15.29 1.642 -17.15" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
   </a-scene>
 </body>
   <script src="js/main.js"></script>

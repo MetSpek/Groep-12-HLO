@@ -348,6 +348,9 @@ for (let i = 0; i < eindToetsen.length; i++) {
     for(let i = 0; i < nasa_toetsen.length; i++){
       nasa_toetsen[i].setAttribute("visible", "true");
     };
+    for(let i = 0; i < nasa_dates.length; i++){
+      nasa_dates[i].setAttribute("visible", "true");
+    };
   };
 
   // Padlock reset on
@@ -355,9 +358,13 @@ for (let i = 0; i < eindToetsen.length; i++) {
     nasa_screen_1.setAttribute("src","#nasa_bg");
     nasa_screen_2.setAttribute("src","#nasa_bg_s");
     nasa_screen_3.setAttribute("src","#nasa_bg");
+    for(let j = 0; j < 6; j++){
+      nasa_dates[j].setAttribute("visible", "false");
+    };
     for(let i = 0; i < nasa_toetsen.length; i++){
       nasa_toetsen[i].setAttribute("visible", "false");
     };
+
   };
 
   // Dev tools
@@ -371,6 +378,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
         let keyValue = i;
         let d = nasa_keypad_input.length;
         nasa_keypad_input[d] = keyValue;
+        nasa_dates[d].setAttribute("visible","false");
         if(nasa_keypad_input.toString() == nasa_rdate_psw.toString()){
           nasa_pc_reset_succes();
           nasa_proven = true;
@@ -378,9 +386,15 @@ for (let i = 0; i < eindToetsen.length; i++) {
         };
         if(nasa_keypad_input.length == 6){
           nasa_keypad_input = [];
+          if(nasa_proven == false){
+            for(let i = 0; i < nasa_dates.length; i++){
+              nasa_dates[i].setAttribute("visible", "true");
+            };
+          };
+
           playSound(camera, "#wrong", "0.1");
           //Hier code om andere foto te laden
-        }
+        };
       })
     };
     // NASA door keypad
