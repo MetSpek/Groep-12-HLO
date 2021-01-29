@@ -14,7 +14,6 @@
       <!-- SOUNDS -->
       <audio id="alive" src="sounds/alive.mp3"></audio>
       <audio id="died" src="sounds/died.mp3"></audio>
-      <audio id="easter" src="sounds/easter.mp3"></audio>
       <audio id="grave" src="sounds/grave.mp3"></audio>
       <audio id="iron" src="sounds/iron.mp3"></audio>
       <audio id="key" src="sounds/key.mp3"></audio>
@@ -41,6 +40,13 @@
             <img id="nasa_keypad" src="textures/nasa_keypad.png">
 
 <!-- ASSETS DANIEL -->
+      <!-- EASTER EGG ;) -->
+      <a-asset-item id="easterKamer" src="Models/ModelDaniel/EasterEgg/easteregg.gltf"></a-asset-item>
+      <audio id="easter" src="sounds/easter.mp3"></audio>
+      <a-asset-item id="duif" src="Models/ModelDaniel/EasterEgg/duif.gltf"></a-asset-item>
+
+
+
       <a-asset-item id="eindspel" src="Models/ModelDaniel/endgame.gltf"></a-asset-item>
 
       <!-- TUTORIAL ASSETS -->
@@ -131,12 +137,21 @@
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets9" position="5 4 41" rotation="90 -90 0" scale="3 3 3"></a-entity>
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets0" position="5 3 40" rotation="90 -90 0" scale="3 3 3"></a-entity>
 
-  <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="white" position="16.5 1.5 37.5"></a-box>
-  <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="red" position="16.5 1.5 42.5"></a-box>
+  <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="white" position="16.5 -20 37.5"></a-box>
+  <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="red" position="16.5 -20 42.5"></a-box>
 
 
   <a-entity class="js--interact js--roomDoor" id="js--timed--door" gltf-model="#teledoor" position="28 -10 8.5" rotation="0 90 0"></a-entity>
   <a-entity class="js--interact js--roomDoor" gltf-model="#teledoor" position="0 0.9 35.5" rotation="0 -90 0"></a-entity>
+
+<!-- EASTER EGG ;) -->
+    <a-entity gltf-model="#easterKamer" position="0 30 0"></a-entity>
+    <a-entity id="js--duif" gltf-model="#duif" position="0 30.5 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear" scale="0.4 0.4 0.4"></a-entity>
+    <a-entity gltf-model="#duif" position="-1 30.5 -1.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear" scale="0.3 0.3 0.3"></a-entity>
+    <a-entity gltf-model="#duif" position="-1 30.5 1.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear" scale="0.3 0.3 0.3"></a-entity>
+
+    <a-box class="js--interact" easter width=".03" height=".03" depth=".03" color="gray" position="6.9 .2 27.5"></a-box>
+    <a-box class="js--interact" easter width=".03" height=".03" depth=".03" color="gray" position="6.9 .2 52.5"></a-box>
 
 <!-- TUTORIAL ROOM -->
     <a-entity gltf-model="#tutorial" position="0 0 -3"></a-entity>

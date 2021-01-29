@@ -43,6 +43,9 @@ window.onload = () =>{
   const placeholders = document.getElementsByClassName('js--placeholder');
   const crystalPlace = document.getElementById("js--crystal");
   const timedDoor = document.getElementById("js--timed--door");
+  const easter = document.getElementById("js--easter");
+  const duif = document.getElementById("js--duif");
+  const secret = "2.5 31.6 0"
   let scene = document.getElementById('js--scene');
   let plekInput = 0;
   let code = "";
@@ -95,7 +98,6 @@ window.onload = () =>{
 
     object.components.sound.playSound();
   }
-
 
 /*==EIND PUZZEL==*/
   AFRAME.registerComponent("endgame", {
@@ -200,6 +202,8 @@ for (let i = 0; i < eindToetsen.length; i++) {
         if(plekEindInput == 6){
           teleport(choice);
           playSound(camera, "#correct", "0.05");
+          keuzes[0].setAttribute("position", "16.5 1.5 37.5");
+          keuzes[1].setAttribute("position", "16.5 1.5 42.5");
         }
       }
     }
@@ -218,6 +222,22 @@ for (let i = 0; i < eindToetsen.length; i++) {
       }
     });
   }
+
+
+  /*==EASTER EGG*/
+  AFRAME.registerComponent("easter", {
+    init: function() {
+      this.el.addEventListener('click', function(evt){
+        teleport(secret);
+        playSound(duif, "#easter", "0.1")
+      })
+    },
+    update: function() {},
+    tick: function() {},
+    remove: function() {},
+    pause: function() {},
+    play: function() {}
+  });
 
   /*==KAMER KILIAN==*/
   AFRAME.registerComponent("nasa-input", {
