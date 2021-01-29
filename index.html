@@ -9,7 +9,6 @@
 </head>
 <body>
   <a-scene id="js--scene">
-
     <a-assets>
       <!-- SOUNDS -->
       <audio id="alive" src="sounds/alive.mp3"></audio>
@@ -23,8 +22,6 @@
       <audio id="wrong" src="sounds/wrong.mp3"></audio>
       <audio id="correct" src="sounds/correct.mp3"></audio>
 
-      <a-asset-item id="teledoor" src="Models/ModelDaniel/TeleportDoor.gltf"></a-asset-item>
-      <a-asset-item id="teleport" src="Models/ModelDaniel/TeleportPad.gltf"></a-asset-item>
       <!-- Kilian assets-->
             <a-sound id="tp" src="sounds/tp.mp3"></a-sound>
             <img id="office_floor" src="textures/grey_floor.jpg">
@@ -45,22 +42,20 @@
       <audio id="easter" src="sounds/easter.mp3"></audio>
       <a-asset-item id="duif" src="Models/ModelDaniel/EasterEgg/duif.gltf"></a-asset-item>
 
-
-
-      <a-asset-item id="eindspel" src="Models/ModelDaniel/endgame.gltf"></a-asset-item>
-
       <!-- TUTORIAL ASSETS -->
       <a-asset-item id="tutorial" src="Models/ModelDaniel/Tutorial/Tutorial.gltf"></a-asset-item>
       <a-asset-item id="tutorialButton" src="Models/ModelDaniel/Tutorial/TutorialButton.gltf"></a-asset-item>
 
       <!-- KAMER ASSETS -->
+      <a-asset-item id="teledoor" src="Models/ModelDaniel/TeleportDoor.gltf"></a-asset-item>
+      <a-asset-item id="teleport" src="Models/ModelDaniel/TeleportPad.gltf"></a-asset-item>
       <a-asset-item id="dungeon" src="Models/ModelDaniel/Dungeon.gltf"></a-asset-item>
       <a-asset-item id="ironDoor" src="Models/ModelDaniel/IronDoor.gltf"></a-asset-item>
       <a-asset-item id="stoneDoor" src="Models/ModelDaniel/StoneDoor.gltf"></a-asset-item>
       <a-asset-item id="graveDoor" src="Models/ModelDaniel/GraveDoor.gltf"></a-asset-item>
+
       <!-- PUZZEL ASSETS -->
       <a-asset-item id="crystal" src="Models/ModelDaniel/Crystal.gltf"></a-asset-item>
-
       <a-asset-item id="tegel1" src="Models/ModelDaniel/Puzzel/Tegel1.gltf"></a-asset-item>
       <a-asset-item id="tegel2" src="Models/ModelDaniel/Puzzel/Tegel2.gltf"></a-asset-item>
       <a-asset-item id="tegel3" src="Models/ModelDaniel/Puzzel/Tegel3.gltf"></a-asset-item>
@@ -82,11 +77,9 @@
       <a-asset-item id="toets9" src="Models/ModelDaniel/Puzzel/Toets9.gltf"></a-asset-item>
       <a-asset-item id="toets0" src="Models/ModelDaniel/Puzzel/Toets0.gltf"></a-asset-item>
 
-
 <!-- ASSETS TERESA -->
     <a-asset-item id="room-obj" src="Models/ModelTeresa/kamer/kamer.obj"></a-asset-item>
     <a-asset-item id="room-mtl" src="Models/ModelTeresa/kamer/kamer.mtl"></a-asset-item>
-
     <a-asset-item id="fire-obj" src="Models/ModelTeresa/blokken/fire.obj"></a-asset-item>
     <a-asset-item id="fire-mtl" src="Models/ModelTeresa/blokken/fire.mtl"></a-asset-item>
     <a-asset-item id="water-obj" src="Models/ModelTeresa/blokken/water.obj"></a-asset-item>
@@ -95,10 +88,9 @@
     <a-asset-item id="air-mtl" src="Models/ModelTeresa/blokken/air.mtl"></a-asset-item>
     <a-asset-item id="earth-obj" src="Models/ModelTeresa/blokken/earth.obj"></a-asset-item>
     <a-asset-item id="earth-mtl" src="Models/ModelTeresa/blokken/earth.mtl"></a-asset-item>
-
     </a-assets>
 
-
+<!-- OBJECTS -->
     <a-camera id="js--camera" position="0 1.6 0" wasd-controls="acceleration: 600">
       <a-entity
         animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 550; from: 0.1 0.1 0.1; to: 1 1 1"
@@ -111,21 +103,17 @@
         raycaster = "objects: .js--interact"
       ></a-entity>
       <a-plane id="js--fade" height="5" width="5" position="0 0 -.2" rotation="0 0 -90" color="black" opacity="0"></a-plane>
-
     </a-camera>
 
 <!-- EIND PUZZEL -->
+  <a-asset-item id="eindspel" src="Models/ModelDaniel/endgame.gltf"></a-asset-item>
   <a-entity endgame class="js--numpadAnswer js--endGame" gltf-model="#toets1" position="-8.2 3.5 -3.5" visible="false" rotation="110 0 0" scale="2 2 2"></a-entity>
   <a-entity endgame class="js--numpadAnswer js--endGame" gltf-model="#toets1" position="-7.8 3.5 -3.5" visible="false" rotation="110 0 0" scale="2 2 2"></a-entity>
-
   <a-entity endgame class="js--endGame" gltf-model="#toets1" position="27.9 .1 5" rotation="0 180 0" scale="2 2 2"></a-entity>
   <a-entity endgame class="js--endGame" gltf-model="#toets1" position="27.5 .1 5" rotation="0 180 0" scale="2 2 2"></a-entity>
-
   <a-entity endgame class="js--endGame" gltf-model="#toets1" position="18.4 2 -7.45" rotation="90 180 0" scale="2 2 2"></a-entity>
   <a-entity endgame class="js--endGame" gltf-model="#toets1" position="18 2 -7.45" rotation="90 180 0" scale="2 2 2"></a-entity>
-
   <a-entity gltf-model="#eindspel" position="0 0 40"></a-entity>
-
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets1" position="5 6 39" rotation="90 -90 0" scale="3 3 3"></a-entity>
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets2" position="5 6 40" rotation="90 -90 0" scale="3 3 3"></a-entity>
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets3" position="5 6 41" rotation="90 -90 0" scale="3 3 3"></a-entity>
@@ -136,11 +124,8 @@
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets8" position="5 4 40" rotation="90 -90 0" scale="3 3 3"></a-entity>
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets9" position="5 4 41" rotation="90 -90 0" scale="3 3 3"></a-entity>
   <a-entity class="js--interact js--eind--toets" gltf-model="#toets0" position="5 3 40" rotation="90 -90 0" scale="3 3 3"></a-entity>
-
   <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="white" position="16.5 -20 37.5"></a-box>
   <a-box class="js--interact js--keuze" width=".5" height="1" depth="2" color="red" position="16.5 -20 42.5"></a-box>
-
-
   <a-entity class="js--interact js--roomDoor" id="js--timed--door" gltf-model="#teledoor" position="28 -10 8.5" rotation="0 90 0"></a-entity>
   <a-entity class="js--interact js--roomDoor" gltf-model="#teledoor" position="0 0.9 35.5" rotation="0 -90 0"></a-entity>
 
@@ -149,7 +134,6 @@
     <a-entity id="js--duif" gltf-model="#duif" position="0 30.5 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear" scale="0.4 0.4 0.4"></a-entity>
     <a-entity gltf-model="#duif" position="-1 30.5 -1.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear" scale="0.3 0.3 0.3"></a-entity>
     <a-entity gltf-model="#duif" position="-1 30.5 1.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear" scale="0.3 0.3 0.3"></a-entity>
-
     <a-box class="js--interact" easter width=".03" height=".03" depth=".03" color="gray" position="6.9 .2 27.5"></a-box>
     <a-box class="js--interact" easter width=".03" height=".03" depth=".03" color="gray" position="6.9 .2 52.5"></a-box>
 
@@ -158,16 +142,15 @@
     <a-entity class="js--interact js--tutorial--knop" gltf-model="#tutorialButton" position="0 0 -3"></a-entity>
     <a-entity class="js--interact js--place" gltf-model="#teleport" position="-1.2 0 -3" scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" gltf-model="#teleport" position="-1.2 0 -4.6" scale="0.5 0.5 0.5"></a-entity>
-
     <a-entity class="js--interact js--tutorial--knop" gltf-model="#tutorialButton" position="3 0 -4.6" rotation="0 -90 0"></a-entity>
     <a-box class="js--interact js--pickup" id="js--tutorial--box" color="green" position="1 .1 -7" width="0.2" height="0.2" depth="0.2"> </a-box>
     <a-cylinder class="js--placeholder js--interact" color="red" radius="0.1" height="0.01" position="1 .1 -6"></a-cylinder>
-
     <a-entity class="js--interact js--tutorial--knop" gltf-model="#tutorialButton" position="0 -.45 -12"></a-entity>
     <a-entity class="js--interact js--tutorial--knop" gltf-model="#tutorialButton" position="0 -.5 -17"></a-entity>
 
 <!--DANIEL ZIJN KAMER  -->
     <a-entity gltf-model="#dungeon" position="20 0 0"></a-entity>
+
     <!-- TELEPORTEER DEUREN TUSSEN KAMERS -->
     <a-entity class="js--interact js--roomDoor" gltf-model="#teledoor" position="19 0.9 -4.9" rotation="0 -90 0"></a-entity>
     <a-entity class="js--interact js--roomDoor" gltf-model="#teledoor" position="22 0.9 4.9" rotation="0 90 0"></a-entity>
@@ -180,10 +163,8 @@
     <a-entity class="js--interact js--place" gltf-model="#teleport" position="24 0 2 " scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="22 -10 -3" scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" id="js--rock--teleport" gltf-model="#teleport" position="28 -10 2" scale="0.5 0.5 0.5"></a-entity>
-
     <a-entity class="js--interact js--pickup" id="js--crystal" gltf-model="#crystal" position="20.5 10 2"></a-entity>
     <a-cylinder class="js--placeholder js--interact" color="red" radius="0.1" height="0.01" position="24.5 1 3"></a-cylinder>
-
     <a-entity id="js--gate" gltf-model="#ironDoor" position="20 0 0"></a-entity>
     <a-entity id="js--rock" gltf-model="#stoneDoor" position="20 0 0"></a-entity>
     <a-entity id="js--grave" gltf-model="#graveDoor" position="20 0 0"></a-entity>
@@ -194,7 +175,6 @@
     <a-entity id="js--code3"  gltf-model="#tegel1" position="16.8 -.2 .1"  rotation="0 90 0"></a-entity>
     <a-entity id="js--code4"  gltf-model="#tegel1" position="16.8 -.2 -.2"  rotation="0 90 0"></a-entity>
     <a-entity id="js--code5"  gltf-model="#tegel1" position="16.8 -.2 -.5" rotation="0 90 0"></a-entity>
-
     <a-entity class="js--interact js--toets" gltf-model="#toets1" position="17.2 0.8 1.6" rotation="20 90 0"></a-entity>
     <a-entity class="js--interact js--toets" gltf-model="#toets2" position="17.2 0.8 1.3" rotation="20 90 0"></a-entity>
     <a-entity class="js--interact js--toets" gltf-model="#toets3" position="17.2 0.8 1" rotation="20 90 0"></a-entity>
@@ -206,16 +186,14 @@
     <a-entity class="js--interact js--toets" gltf-model="#toets9" position="17.5 0.7 0.7" rotation="20 90 0"></a-entity>
     <a-entity class="js--interact js--toets" gltf-model="#toets0" position="17.5 0.7 0.4" rotation="20 90 0"></a-entity>
 
-
-
     <!-- TERESA HAAR KAMER -->
     <a-entity obj-model = "obj: #room-obj; mtl: #room-mtl;" position = "-10 0 0" scale="2 2 2"></a-entity>
-
     <a-entity id="js--fire" class="js--interact js--pickup" obj-model="obj: #fire-obj; mtl: #fire-mtl;" position="-12 0.5 1" scale="0.1 0.1 0.1"></a-entity>
     <a-entity id="js--water" class="js--interact js--pickup" obj-model="obj: #water-obj; mtl: #water-mtl;" position="-12 0.5 0.5" scale="0.1 0.1 0.1"></a-entity>
     <a-entity id="js--earth" class="js--interact js--pickup" obj-model="obj: #earth-obj; mtl: #earth-mtl;" position="-12 0.5 0" scale="0.1 0.1 0.1"></a-entity>
     <a-entity id="js--air" class="js--interact js--pickup" obj-model="obj: #air-obj; mtl: #air-mtl;" position="-12 0.5 -0.5" scale="0.1 0.1 0.1"></a-entity>
 
+    <!-- NUMPAD -->
     <a-entity id="js--numpadNumber1" class="js--numpadNumber" gltf-model="#toets1" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
     <a-entity id="js--numpadNumber2" class="js--numpadNumber" gltf-model="#toets2" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
     <a-entity id="js--numpadNumber3" class="js--numpadNumber" gltf-model="#toets3" position="-8 3.5 -3.5" rotation="110 0 0" visible="false" scale="2 2 2"></a-entity>
@@ -239,17 +217,15 @@
     <a-entity id="js--elementNumber0" class="js--elementNumber" gltf-model="#toets0" position="-12.5 1.75 0.25" rotation="90 90 0" visible="false"></a-entity>
 
 
-
+    <!-- INTERACTABLES -->
     <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 1" width="0.1" height="0.1" depth="0.1"></a-box>
     <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 0.5" width="0.1" height="0.1" depth="0.1"></a-box>
     <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 0" width="0.1" height="0.1" depth="0.1"></a-box>
     <a-box class="js--interact js--placeholder" color="black" position="-12 0.5 -0.5" width="0.1" height="0.1" depth="0.1"></a-box>
     <a-cylinder class="js--interact js--placeholder" color="grey" position="-11 0.5 0.25" height="0.01" radius="0.2"></a-cylinder>
-
     <a-box color="grey" height="0.1" width="1.2" depth="1.2" position="-8 0.1 -3"></a-box>
     <a-box color="grey" height="1.5" width="0.5" depth="0.5" position="-8 0.5 -3"></a-box>
     <a-box color="grey" height="0.2" width="1.2" depth="1.5" position="-8 1.39 -3" rotation="45 0 0"></a-box>
-
     <a-entity class="js--interact js--key" gltf-model="#toets1" position="-8.3 1.9 -3.4" rotation="45 0 0"></a-entity>
     <a-entity class="js--interact js--key" gltf-model="#toets2" position="-8 1.9 -3.4" rotation="45 0 0"></a-entity>
     <a-entity class="js--interact js--key" gltf-model="#toets3" position="-7.7 1.9 -3.4" rotation="45 0 0"></a-entity>
@@ -262,12 +238,9 @@
     <a-entity class="js--interact js--key" gltf-model="#toets0" position="-8 1.3 -2.8" rotation="45 0 0"></a-entity>
     <a-box class="js--interact js--key" width="0.2" height="0.1" depth="0.2" color="red" class="js--interact js--toets" position="-8.3 1.05 -2.55" rotation="45 0 0"></a-box>
     <a-box class="js--interact js--key" width="0.2" height="0.1" depth="0.2" color="green" class="js--interact js--toets" position="-7.7 1.05 -2.55" rotation="45 0 0"></a-box>
-
-
     <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="-10 0.2 0.25" scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="-8 0.2 -1.5" scale="0.5 0.5 0.5"></a-entity>
     <a-entity class="js--interact js--place" id="js--gate--teleport" gltf-model="#teleport" position="-13.5 0.2 -3.5" scale="0.5 0.5 0.5"></a-entity>
-
     <a-entity id="js--elementDoor" class="js--interact js--roomDoor" gltf-model="#teledoor" position="-14.5 0.9 -3.5" visible="false"></a-entity>
 
     <!-- Kilian NASA kamer -->
@@ -288,7 +261,6 @@
     <a-box id="js--nasa-door1" src="#nasa_door" width="1.1" height="2.2" depth="0.2" position="18.2 1 -7.5" visible="true" rotation="0 180 0"></a-box>
     <a-box id="js--nasa-door2" src="#nasa_door" width="1.1" height="2.2" depth="0.2" position="18.75 1 -8.05" visible="false" rotation="0 90 0"></a-box>
 
-
     <!-- Scenery -->
     <a-box src="#nasa_keypad" width="1.1" height="2.2" depth="1.2" position="22 1.1 -12.5"></a-box>
     <a-box src="#nasa_keypad" width="0.7" height="1.2" depth="2.2" position="22 0.6 -17.5"></a-box>
@@ -299,6 +271,7 @@
     <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="8.5 1.85 -12.9" rotation="0 0 -5"></a-box>
     <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="10 1.85 -9.2" rotation="0 45 -5"></a-box>
     <a-box src="#nasa_bg" width="0.1" height="2" depth="4" position="10 1.85 -21.1" rotation="0 -45 -5"></a-box>
+
     <!-- Buttons, keypad -->
     <a-box class="js--interact" id="js--nasa-startup" color="rgb(255, 255, 0)" width="0.1" height="0.1" depth="0.1" position="22 0.6 -18.7"></a-box>
     <a-sphere class="js--interact" id="js--nasa-reset" color="rgb(0, 0, 0)" radius="0.06" position="17.1 1.04 -7.53"></a-sphere>
@@ -329,7 +302,6 @@
     <!-- computer screens -->
     <a-box width="1" height="0.9" depth="3.9" position="15.6 0.5 -15.58"></a-box>
     <a-box width="3.8" height="1.3" depth="0.3" position="15.51 1.21 -15.58" rotation="-45 90 0" color="rgb(200,200,200)"></a-box>
-
     <a-plane id="js--nasa-screen-1" src="#nasa_bg_black" width="1.1" height="1" position="15.6 1.35 -14.4" rotation="-45 90 0"></a-plane>
     <a-plane id="js--nasa-screen-2" nasa-picture src="#nasa_bg_black" width="1.1" height="1" position="15.6 1.35 -15.6" rotation="-45 90 0"></a-plane>
     <a-plane id="js--nasa-screen-3" nasa-picture src="#nasa_bg_black" width="1.1" height="1" position="15.6 1.35 -16.8" rotation="-45 90 0"></a-plane>
@@ -341,7 +313,6 @@
     <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -16.85" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
     <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -17.05" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity>
     <a-entity nasa-input class="js--nasa-date js--nasa-toets" gltf-model="#toets9" position="15.29 1.642 -17.15" rotation="45 90 0" visible="false" scale="0.45 0.45 0.45"></a-entity> -->
-
   </a-scene>
 </body>
   <script src="js/main.js"></script>

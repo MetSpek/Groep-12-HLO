@@ -16,7 +16,7 @@ window.onload = () =>{
 
             /*==========LOPEN===========*/
   const places = document.getElementsByClassName('js--place');
-  const roomPlace = document.getElementsByClassName('js--roomPlace')
+  const roomPlace = document.getElementsByClassName('js--roomPlace');
   const camera = document.getElementById('js--camera');
   const roomDoor = document.getElementsByClassName('js--roomDoor');
 
@@ -89,13 +89,9 @@ window.onload = () =>{
   let elementNumber9 = document.getElementById("js--elementNumber9");
   let elementNumber0 = document.getElementById("js--elementNumber0");
 
-
 /*==SOUNDS==*/
   function playSound(object, soundFile, volume){
-    console.log("play file: " + soundFile + " ,on object: " + object.el);
-
     object.setAttribute("sound", "src: " + soundFile + "; volume: " + volume );
-
     object.components.sound.playSound();
   }
 
@@ -105,7 +101,6 @@ window.onload = () =>{
       this.makeCode = function(){
         let randomNum = Math.floor(Math.random() * 9) + 1;
         oplossing = oplossing + randomNum;
-        console.log(oplossing)
         switch(randomNum){
           case 0:
             setEndCode("#toets1")
@@ -141,6 +136,7 @@ window.onload = () =>{
         }
       }
 
+    /*MAAKT DE EIND CODE*/
     function setEndCode(model){
       const eindNum = document.getElementsByClassName("js--endGame");
         eindNum[plekCode].removeAttribute("gltf-model");
@@ -157,6 +153,7 @@ window.onload = () =>{
   play: function() {}
 });
 
+/*CHECKED DE INPUT*/
 for (let i = 0; i < eindToetsen.length; i++) {
   eindToetsen[i].addEventListener('click', function(evt){
     playSound(eindToetsen[i], "#key", "1");
@@ -196,6 +193,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
   });
 }
 
+  /*CHECKED OF DE INPUT CORRECT IS*/
   function checkEindGetallen(input){
       if(oplossing[plekEindInput] == input){
         plekEindInput = plekEindInput + 1;
@@ -208,6 +206,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
       }
     }
 
+  /*CHECKED WELKE KEUZE JE MAAKT*/
   for (let i = 0; i < keuzes.length; i++) {
     keuzes[i].addEventListener('click', function(evt){
       switch (keuzes[i]) {
@@ -251,7 +250,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
 
   const nasa_toetsen = document.getElementsByClassName("js--nasa-toets");
   const nasa_toetsen_door = document.getElementsByClassName("js--nasa-toets-door");
-  console.log(nasa_toetsen_door);
   const nasa_screen_1 = document.getElementById("js--nasa-screen-1");
   const nasa_screen_2 = document.getElementById("js--nasa-screen-2");
   const nasa_screen_3 = document.getElementById("js--nasa-screen-3");
@@ -311,7 +309,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
   nasa_rdate_url[7] = "-";
   nasa_rdate_url[8] = nasa_rdate_psw[0].toString();
   nasa_rdate_url[9] = nasa_rdate_psw[1].toString();
-  console.log(nasa_rdate_url.join(""));
 
   function nasa_pc_startup(){
     nasa_screen_1.setAttribute("src","#nasa_bg");
@@ -363,7 +360,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
     };
   };
 
-
   // Dev tools
   dv_nasa_startup.addEventListener("click", nasa_pc_startup);
   //dv_nasa_next.addEventListener("click", nasa_pc_reset_succes);
@@ -394,7 +390,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
         let keyValue = i;
         let d = nasa_door_input.length;
         nasa_door_input[d] = keyValue;
-        console.log(nasa_door_input);
         if(nasa_door_input.toString() == nasa_default_psw.toString() && nasa_proven == true){
           openMetalDoor();
           playSound(camera, "#correct", "0.1");
@@ -407,9 +402,8 @@ for (let i = 0; i < eindToetsen.length; i++) {
       })
     };
 
-
-
 /*======================================LOPEN=================================*/
+    /*KIJKT NAAR WELKE PLEK JE KIJKT EN TELEPORTEERT JE DAAR HEEN*/
     for (let i = 0; i < places.length; i++) {
       places[i].addEventListener('click', function(evt){
         let att = document.createAttribute("position");
@@ -419,34 +413,36 @@ for (let i = 0; i < eindToetsen.length; i++) {
     }
 
 /*==========================KAMER SWITCHEN====================================*/
+      /*KIJKT NAAR WELKE DEUR JE KIJKT*/
       for (let i = 0; i < roomDoor.length; i++) {
         roomDoor[i].addEventListener('click', function(evt){
           playSound(camera, "#tp", "0.05");
           /*Hier kijkt welke deuren gelinked zijn*/
           switch(roomDoor[i]){
             case roomDoor[0]:
-              teleport(danielToEnd)
+              teleport(danielToEnd);
               break;
             case roomDoor[1]:
-              teleport(endToDaniel)
+              teleport(endToDaniel);
               break;
             case roomDoor[2]:
-              teleport(danielToTeresa)
+              teleport(danielToTeresa);
               break;
             case roomDoor[3]:
-              teleport(danielToKilian)
+              teleport(danielToKilian);
               break;
             case roomDoor[4]:
-              teleport(teresaToDaniel)
+              teleport(teresaToDaniel);
               break;
             case roomDoor[5]:
-              teleport(kilianToDaniel)
+              teleport(kilianToDaniel);
               break;
             default:
           }
       });
     }
 
+      /*TELEPORTEERT TE GEBRUIKER MET EEN FADE-IN FADE-OUT*/
       function teleport(values){
         const fade = document.getElementById('js--fade');
         /*Animatie voor fade to black*/
@@ -476,7 +472,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
                   camera.innerHTML += '<a-box  id="js--hold" class="js--interact js--pickup" color="green" position="0.5 -0.2 -0.5" width="0.2" height="0.2" depth="0.2"></a-box>';
                   hold = "box";
                   this.remove();
-                  console.log(hold)
                   break;
                 case pickups[1]:
                   camera.innerHTML += '<a-entity id="js--hold" class="js--interact js--pickup" gltf-model="#crystal" position="-3.3 -.5 4"></a-entity>';
@@ -488,7 +483,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
             }
             });
 
-
+            /*KIJKT NAAR WELK ELEMENT JE WILT OPPAKKEN*/
             pickups[i].addEventListener('click', function(evt){
               if (hold == null) {
                 elementId = this.id;
@@ -519,7 +514,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
             });
           }
         }
-
 
       addListeners();
 
@@ -612,10 +606,8 @@ for (let i = 0; i < eindToetsen.length; i++) {
         });
       }
 
-
-
-
       /*=============================TUTORIAL=======================================*/
+          /*ZORGT DAT GEBRUIKER GOED TELEPORTEERT DOOR TUTORIAL*/
           for (let i = 0; i < verderKnop.length; i++) {
             verderKnop[i].addEventListener('click', function(evt){
               switch (verderKnop[i]) {
@@ -633,17 +625,11 @@ for (let i = 0; i < eindToetsen.length; i++) {
                   teleport(startRoom);
                   break;
                 default:
-                  console.log("minder nice")
               }
             });
           }
 
-
-
-
-
 /*=============================CODE DANIEL====================================*/
-
   /*CODE VOOR PUZZEL CREATIE*/
   makeCode();
 
@@ -654,9 +640,9 @@ for (let i = 0; i < eindToetsen.length; i++) {
     decideKind(tegelThree);
     decideKind(tegelFour);
     decideKind(tegelFive);
-    console.log("Code Daniel: " + code);
   }
 
+  /*BESLIST WELKE TEGEL WELK NUMMER IS*/
   function decideKind(tegel){
     let randomNumber = randomiser();
     switch (randomNumber) {
@@ -694,10 +680,12 @@ for (let i = 0; i < eindToetsen.length; i++) {
     }
   }
 
+  /*SET HET MODEL NAAR GEGEVEN NUMMER*/
   function setModel(tegel, model){
     tegel.setAttribute("gltf-model", model)
   }
 
+  /*RANDOMISED CODE*/
   function randomiser(){
     let nummer = Math.floor(Math.random() * 9) + 1
     nummer.toString();
@@ -745,7 +733,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
     });
   }
 
-
   /*CHECKED OF CODE KLOPT*/
   function checkGetallen(input){
       if(code[plekInput] == input){
@@ -756,8 +743,6 @@ for (let i = 0; i < eindToetsen.length; i++) {
         }
       }
     }
-
-
 
   /*Verplaatsen van dingen*/
   function removeGate(){
@@ -789,19 +774,15 @@ for (let i = 0; i < eindToetsen.length; i++) {
     switch (place) {
       case 2:
         elementCode[0] = element;
-        console.log(elementCode);
         break;
       case 3:
         elementCode[1] = element;
-        console.log(elementCode);
         break;
       case 4:
         elementCode[2] = element;
-        console.log(elementCode);
         break;
       case 5:
         elementCode[3] = element;
-        console.log(elementCode);
         break;
       default:
     }
@@ -929,9 +910,7 @@ for (let i = 0; i < eindToetsen.length; i++) {
       for(i = 0; i < elementNumbers.length; i++) {
         elementNumbers[i].setAttribute("visible", "false");
       }
-      console.log("fout");
     }
-
   }
 
   /*check code*/
@@ -956,6 +935,4 @@ for (let i = 0; i < eindToetsen.length; i++) {
       numpadNumbers[i].setAttribute("visible", "false");
     }
   }
-
-
 }
